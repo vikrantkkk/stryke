@@ -1,0 +1,26 @@
+.border-gradient {
+  position: relative;
+  border: 1px solid transparent;
+  border-radius: 12px; /* Adjust as needed */
+}
+
+.border-gradient::before {
+  content: "";
+  position: absolute;
+  inset: -2px; /* Controls border thickness */
+  z-index: -1;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(
+    to bottom left,
+    /* rgba(88, 255, 41, 0.9) 20%,   
+    rgba(88, 255, 41, 0.2) 50%,  
+    rgba(88, 255, 41, 0.9) 80%    */
+      rgba(88, 200, 41, 0.4) 10%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(88, 200, 41, 0.4) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+}
