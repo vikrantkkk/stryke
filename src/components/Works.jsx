@@ -15,7 +15,7 @@ const Works = () => {
         </p>
       </AnimateFromBottom>
       <div className="flex justify-center items-center flex-col gap-40 w-full px-60">
-        <div className="flex justify-between items-center w-full rounded-xl px-20">
+        <div className="flex justify-between items-center w-full rounded-xl">
           <AnimateFromLeft>
             <div className="border border-[#292929] flex flex-col  gap-4 p-6 rounded-xl w-lg">
               <p className="font-extrabold text-[20px] leading-6 text-[#C0FF73]">
@@ -38,7 +38,7 @@ const Works = () => {
           </AnimateFromRight>
         </div>
 
-        <div className="flex justify-between items-center w-full rounded-xl px-20">
+        <div className="flex justify-between items-center w-full rounded-xl">
           <AnimateFromLeft>
             <div className="flex flex-col w-full gap-12">
               <div className="border border-[#292929] flex flex-col  gap-4 p-6 rounded-xl w-lg">
@@ -73,7 +73,7 @@ const Works = () => {
           </AnimateFromRight>
         </div>
 
-        <div className="flex justify-between items-center w-full rounded-xl px-20">
+        <div className="flex justify-between items-center w-full rounded-xl">
           <AnimateFromLeft>
             <div className="flex flex-col w-full gap-12">
               <div className="border border-[#292929] flex flex-col w-1/2 gap-4 p-6 rounded-xl min-w-lg">

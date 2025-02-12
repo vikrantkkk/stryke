@@ -76,13 +76,13 @@ const Hero = () => {
       <AnimateFromInside>
         <Button name="Start Trading" />
       </AnimateFromInside>
-      <div className="relative flex w-full justify-center items-center">
+      <div className="relative flex w-full justify-center items-center px-60">
         <AnimateFromLeft>
-          <img className="max-w-full h-auto" src={mobile2} alt="mobile" />
+          <img className="w-full h-auto" src={mobile2} alt="mobile" />
         </AnimateFromLeft>
         <AnimateFromBottom>
           <div className="relative top-20">
-            <img className=" max-w-full h-auto" src={mobile1} alt="mobile1" />
+            <img className="w-full h-auto" src={mobile1} alt="mobile1" />
             <div className="flex gap-4 absolute -top-20  left-10 w-full">
               <AnimateFromLeft>
                 <div className="flex justify-center items-center gap-1 border border-white rounded-full py-2 px-4">

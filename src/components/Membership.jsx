@@ -13,7 +13,7 @@ const cards = [
       "Dive deep into comprehensive market data for informed decision-making",
     image: learn,
     position: "translate-y-[25%] -translate-x-[15%] rotate-[-15deg]",
-    width: "w-[80%]",
+    width: "w-[70%]",
   },
   {
     title: "Live Trading Stream",
@@ -40,7 +40,7 @@ const cards1 = [
       "Dive deep into comprehensive market data for informed decision-making",
     image: signals,
     position: "translate-y-[25%] translate-x-[25%] rotate-[-5deg]",
-    width: "w-[80%]",
+    width: "w-[70%]",
   },
 ];
 
@@ -54,11 +54,13 @@ const Card = ({ title, description, image, position, width }) => (
     <div className="text-start">
       <p className="font-normal text-[12px] leading-4">{description}</p>
     </div>
-    <img
-      src={image}
-      alt={title}
-      className="w-18 h-18 object-cover rounded-full mx-auto"
-    />
+    <div className="flex justify-end">
+      <img
+        src={image}
+        alt={title}
+        className="w-18 h-18 object-cover rounded-full"
+      />
+    </div>
   </div>
 );
 
@@ -76,7 +78,7 @@ const Membership = () => {
         </p>
       </AnimateFromInside>
 
-      <div className="grid grid-cols-2 gap-10 w-full max-w-5xl">
+      <div className="grid grid-cols-2 gap-10 w-full px-60">
         <AnimateFromBottom>
           <div className="flex flex-col items-center">
             {cards.map((card, index) => (

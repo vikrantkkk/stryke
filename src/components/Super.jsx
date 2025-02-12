@@ -19,12 +19,12 @@ const Super = () => {
       </AnimateFromBottom>
 
       {/* Parent Div 1 (First 3 Cards) */}
-      <div className="flex justify-center gap-10 w-full">
+      <div className="flex justify-center gap-10 w-full px-60">
         {cardData.slice(0, 3).map((feature, index) => (
           <AnimateFromInside key={index}>
             <div
               className="flex flex-col items-start gap-4 p-6 rounded-2xl shadow-sm 
-              border-[1px] border-[#58FF290F] bg-[linear-gradient(206deg,#0E1712_-41.83%,#040404_98.64%)] w-md"
+              border-[1px] border-[#58FF290F] bg-[linear-gradient(206deg,#0E1712_-41.83%,#040404_98.64%)]"
             >
               <div className="flex justify-between items-center w-full">
                 <div className="flex items-center gap-4">
@@ -51,12 +51,12 @@ const Super = () => {
       </div>
 
       {/* Parent Div 2 (Next 3 Cards) */}
-      <div className="flex justify-center gap-10 w-full">
+      <div className="flex justify-center gap-10 w-full px-60">
         {cardData.slice(3, 6).map((feature, index) => (
           <AnimateFromInside key={index}>
             <div
               className="flex flex-col items-start gap-4 p-6 rounded-2xl shadow-sm 
-              border-[1px] border-[#58FF290F] bg-[linear-gradient(206deg,#0E1712_-41.83%,#040404_98.64%)] w-md"
+              border-[1px] border-[#58FF290F] bg-[linear-gradient(206deg,#0E1712_-41.83%,#040404_98.64%)]"
             >
               <div className="flex justify-between items-center w-full">
                 <div className="flex items-center gap-4">
