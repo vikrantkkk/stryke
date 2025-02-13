@@ -24,3 +24,11 @@
   -webkit-mask-composite: destination-out;
   mask-composite: exclude;
 }
+
+
+.text-gradient {
+  background: #C0FF73;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block; /* Ensures gradient applies properly */
+}

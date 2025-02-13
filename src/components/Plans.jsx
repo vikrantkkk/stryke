@@ -10,6 +10,9 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import apple from "../assets/svg/apple.svg";
 import playstore from "../assets/svg/playstore.svg";
 import halfiphone from "../assets/png/halfiphone.png";
+import downloadelipse from "../assets/png/downloadelipse.png";
+import clippath from "../assets/png/clippath.png";
+import priceelipse from "../assets/png/priceelipse.png";
 
 const Plans = () => {
   const [isMonthly, setIsMonthly] = useState(true);
@@ -57,7 +60,7 @@ const Plans = () => {
         {/* Hindi Card */}
         <AnimateFromLeft>
           <div
-            className="flex flex-col justify-center items-center gap-8 rounded-3xl p-8 w-full max-w-md text-white border border-[rgba(255,255,255,0.3)]"
+            className="flex flex-col justify-center items-center gap-8 rounded-3xl p-8 w-full max-w-md text-white border border-[rgba(255,255,255,0.3)] relative"
             style={{
               background: `linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
                          radial-gradient(165.78% 61.11% at -58.33% -47.79%, rgba(1, 10, 0, 0.41) 0%, rgba(255, 255, 255, 0) 100%)`,
@@ -164,6 +167,11 @@ const Plans = () => {
                 Buy Now
               </button>
             </div>
+            <img
+              className="absolute left-0 bottom-0"
+              src={priceelipse}
+              alt="priceelipse"
+            />
           </div>
         </AnimateFromLeft>
 
@@ -281,9 +289,9 @@ const Plans = () => {
         </AnimateFromRight>
       </div>
       <AnimateFromInside>
-        <div className="relative w-[1216px] h-auto rounded-2xl overflow-hidden p-[1px]">
-          <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-white/10 rounded-2xl z-0"></div>
-          <div className="flex justify-center items-start relative w-full h-full bg-[#131513] rounded-2xl z-10 px-20 pt-20">
+        <div className="relative w-[1216px] h-auto rounded-3xl overflow-hidden p-[1px]">
+          <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-white/10 rounded-3xl z-0"></div>
+          <div className="flex justify-center items-start relative w-full h-full bg-[#070A07] rounded-3xl z-10 px-20 pt-20 ">
             <div className="w-[70%] flex flex-col justify-start items-start gap-12">
               <div className="flex flex-col items-start gap-4">
                 <AnimateFromTop>
@@ -328,9 +336,19 @@ const Plans = () => {
             </div>
             <div className="flex flex-col flex-1 items-center justify-between">
               <AnimateFromLeft>
-                <img className="" src={halfiphone} alt="halfiphone" />
+                <img className="z-10" src={halfiphone} alt="halfiphone" />
               </AnimateFromLeft>
             </div>
+            <img
+              className="absolute bottom-0 -z-10"
+              src={clippath}
+              alt="clippath"
+            />
+            <img
+              className="absolute top-0 right-0 -z-10"
+              src={downloadelipse}
+              alt="downloadelipse"
+            />
           </div>
         </div>
       </AnimateFromInside>

@@ -4,6 +4,7 @@ import bajaj from "../assets/png/bajaj.png";
 import bajaj1 from "../assets/png/bajaj1.png";
 import bajaj2 from "../assets/png/bajaj2.png";
 import paytm from "../assets/png/paytm.png";
+import artificialelipse from "../assets/png/artificialelipse.png";
 import magicpen from "../assets/svg/magicpen.svg";
 import { SvgIcon } from "../utils/SvgIcons";
 import Button from "../common/Button";
@@ -68,7 +69,7 @@ const Artificial = () => {
   ];
 
   return (
-    <div className="bg-[#070A07] flex justify-center items-center flex-col gap-16 px-10 pt-14 pb-60 w-full">
+    <div className="bg-[#070A07] flex justify-center items-center flex-col gap-16 px-10 pt-14 pb-60 w-full overflow-hidden relative">
       <AnimateFromBottom>
         <h2 className="font-extrabold text-[50px] text-white text-center leading-[1.2]">
           Leverage The Power Of{" "}
@@ -186,6 +187,11 @@ const Artificial = () => {
         allowtransparency="true"
         frameBorder="0"
       ></iframe>
+      <img
+        className="absolute right-0 -bottom-20"
+        src={artificialelipse}
+        alt="artificialelipse"
+      />
     </div>
   );
 };

@@ -80,9 +80,6 @@ const Interactive = () => {
           </div>
         </div>
       </div>
-      <AnimateFromInside>
-        <Button name="Start Trading" />
-      </AnimateFromInside>
     </div>
   );
 };

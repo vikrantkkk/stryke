@@ -22,22 +22,22 @@ import video from "../assets/video/video.mp4";
 
 const Hero = () => {
   return (
-    <div className="bg-[#070A07] flex justify-center items-center flex-col gap-6 px-10 py-14 w-full">
+    <div className="bg-[#070A07] flex justify-center items-center flex-col gap-6  py-14 w-full">
       <AnimateFromBottom>
-        <div className="relative flex justify-center items-center gap-2 rounded-full border border-transparent before:absolute before:inset-0 before:rounded-full before:border-[1px] before:border-transparent before:bg-gradient-to-r before:from-white/5 before:via-white/40 before:to-white/5 before:p-[1px]">
+        <div className="relative flex justify-center items-center gap-1 rounded-full border p-1 border-[#FFFFFF33]/[0.7]">
           <div className="flex -space-x-4 rtl:space-x-reverse">
             <img
-              className="w-10 h-10 border-2 border-white rounded-full"
+              className="w-10 h-10  rounded-full"
               src={avatar}
               alt="User 1"
             />
             <img
-              className="w-10 h-10 border-2 border-white rounded-full"
+              className="w-10 h-10  rounded-full"
               src={avatar1}
               alt="User 2"
             />
             <img
-              className="w-10 h-10 border-2 border-white rounded-full"
+              className="w-10 h-10  rounded-full"
               src={avatar2}
               alt="User 3"
             />
@@ -46,6 +46,7 @@ const Hero = () => {
             Trusted by 50,000 Users.
           </p>
         </div>
+        
       </AnimateFromBottom>
 
       <AnimateFromBottom>
@@ -125,9 +126,9 @@ const Hero = () => {
           <img className="max-w-full h-auto" src={mobile} alt="mobile2" />
         </AnimateFromRight>
       </div>
-      <div className="bg-[#070A07] flex justify-center items-center flex-col w-screen relative top-10">
+      <div className="bg-[#070A07] flex justify-center items-center flex-col w-full relative top-10">
         <div
-          className=" w-full flex justify-center items-center flex-col px-60 py-6"
+          className=" w-full flex justify-center items-center flex-col px-40 py-6"
           style={{
             borderWidth: "1px 0px 1px 0px",
             borderStyle: "solid",
@@ -144,7 +145,7 @@ const Hero = () => {
                     20K +
                   </span>
                   <span>
-                    <img className="max-w-full" src={moon} alt="moon" />
+                    <img className="max-w-full relative right-4" src={moon} alt="moon" />
                   </span>
                 </div>
                 <span className="text-white font-normal text-[14px] leading-6">
@@ -163,7 +164,7 @@ const Hero = () => {
                   </span>
                   <span>
                     <img
-                      className="max-w-full"
+                      className="max-w-full relative right-4"
                       src={rectangle}
                       alt="rectangle"
                     />
@@ -184,7 +185,7 @@ const Hero = () => {
                     4.6/5+
                   </span>
                   <span>
-                    <img className="max-w-full" src={star} alt="star" />
+                    <img className="max-w-full relative right-4" src={star} alt="star" />
                   </span>
                 </div>
                 <span className="text-white font-normal text-[14px] leading-6">
@@ -202,7 +203,7 @@ const Hero = () => {
                     SEBI
                   </span>
                   <span>
-                    <img className="max-w-full" src={traingle} alt="traingle" />
+                    <img className="max-w-full relative right-4 -top-2" src={traingle} alt="traingle" />
                   </span>
                 </div>
                 <span className="text-white font-normal text-[14px] leading-6">

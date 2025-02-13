@@ -81,9 +81,7 @@ const AutoPilot = () => {
           </div>
         </div>
       </div>
-      <AnimateFromInside>
-        <Button name="Start Trading" />
-      </AnimateFromInside>
+    
     </div>
   );
 };

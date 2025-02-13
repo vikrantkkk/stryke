@@ -16,18 +16,28 @@ import Plans from "../components/Plans";
 const LandingPage = () => {
   return (
     <MainLayout>
-      <Hero />
+      <div id="home">
+        <Hero />
+      </div>
       <Works />
       <Trade />
-      <Hot />
+      {/* <Hot />
       <Interactive />
-      <AutoPilot />
-      <Features />
+      <AutoPilot /> */}
+      <div id="features">
+        <Features />
+      </div>
       <Comprehensive />
-      <Artificial />
+      <div id="a.i news">
+        <Artificial />
+      </div>
       <Membership />
-      <Super />
-      <Plans/>
+      <div id="reviews">
+        <Super />
+      </div>
+      <div id="pricing">
+        <Plans />
+      </div>
     </MainLayout>
   );
 };
