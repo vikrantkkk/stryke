@@ -74,7 +74,7 @@ const Features = () => {
         hover:border-image-[linear-gradient(0deg,rgba(88,255,41,0.06),rgba(88,255,41,0.06)),linear-gradient(238.28deg,#58FF29_0%,rgba(88,255,41,0.241987)_11.61%,rgba(88,255,41,0)_89.58%)]
         hover:border-image-slice-[1] box-border
         hover:shadow-[1px_-1px_1px_1px_rgba(88,255,41,0.35),-1px_2px_3px_0px_rgba(88,255,41,0.1)]
-        h-full" // Added this to make sure all cards have equal height
+        h-full" 
             >
               <h3 className="font-semibold text-[22px] leading-7 text-white">
                 {feature.title}

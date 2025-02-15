@@ -21,9 +21,6 @@ const LandingPage = () => {
       </div>
       <Works />
       <Trade />
-      {/* <Hot />
-      <Interactive />
-      <AutoPilot /> */}
       <div id="features">
         <Features />
       </div>

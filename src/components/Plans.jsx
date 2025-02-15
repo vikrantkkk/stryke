@@ -13,11 +13,12 @@ import halfiphone from "../assets/png/halfiphone.png";
 import downloadelipse from "../assets/png/downloadelipse.png";
 import clippath from "../assets/png/clippath.png";
 import priceelipse from "../assets/png/priceelipse.png";
+import pricetitleelipse from "../assets/png/pricetitleelipse.png";
 
 const Plans = () => {
   const [isMonthly, setIsMonthly] = useState(true);
   return (
-    <div className="bg-[#070A07] flex justify-center items-center flex-col gap-16 px-10 py-14 w-full">
+    <div className="bg-[#070A07] flex justify-center items-center flex-col gap-16  py-14 w-full relative z-10">
       <AnimateFromBottom>
         <h2 className="font-extrabold text-[80px] leading-[96px] text-white text-center">
           Pricing <span className="text-[#C0FF73]">Plans</span>
@@ -59,13 +60,7 @@ const Plans = () => {
       <div className="flex justify-center items-start gap-16 px-10 w-full">
         {/* Hindi Card */}
         <AnimateFromLeft>
-          <div
-            className="flex flex-col justify-center items-center gap-8 rounded-3xl p-8 w-full max-w-md text-white border border-[rgba(255,255,255,0.3)] relative"
-            style={{
-              background: `linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-                         radial-gradient(165.78% 61.11% at -58.33% -47.79%, rgba(1, 10, 0, 0.41) 0%, rgba(255, 255, 255, 0) 100%)`,
-            }}
-          >
+          <div className="flex flex-col justify-center items-center gap-8 rounded-3xl p-8 w-full max-w-md text-white border border-[rgba(255,255,255,0.3)] cursor-pointer relative group hover:border-[#08DC83]">
             <div className="flex flex-col justify-center items-start gap-3">
               <h2 className="font-medium text-[26px] leading-8 text-[#70FBC8]">
                 Hindi
@@ -168,7 +163,7 @@ const Plans = () => {
               </button>
             </div>
             <img
-              className="absolute left-0 bottom-0"
+              className="absolute left-0 bottom-0 rounded-b-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               src={priceelipse}
               alt="priceelipse"
             />
@@ -178,7 +173,7 @@ const Plans = () => {
         {/* English Card (similar structure) */}
         <AnimateFromRight>
           <div
-            className="flex flex-col justify-center items-center gap-8 rounded-3xl p-8 w-full max-w-md text-white border border-[rgba(255,255,255,0.3)]"
+            className="flex flex-col justify-center items-center gap-8 rounded-3xl p-8 w-full max-w-md text-white border border-[rgba(255,255,255,0.3)] cursor-pointer relative group hover:border-[#08DC83]"
             style={{
               background: `linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
                          radial-gradient(165.78% 61.11% at -58.33% -47.79%, rgba(1, 10, 0, 0.41) 0%, rgba(255, 255, 255, 0) 100%)`,
@@ -285,6 +280,11 @@ const Plans = () => {
                 Buy Now
               </button>
             </div>
+            <img
+              className="absolute left-0 bottom-0 rounded-b-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              src={priceelipse}
+              alt="priceelipse"
+            />
           </div>
         </AnimateFromRight>
       </div>
@@ -308,7 +308,7 @@ const Plans = () => {
               </div>
               <div className="flex gap-10">
                 <AnimateFromLeft>
-                  <div className="relative flex justify-center items-center gap-2 rounded-full py-3 px-8 before:absolute before:inset-0 before:rounded-full before:border-[1px] before:border-transparent before:[border-image-source:linear-gradient(270.82deg,rgba(255,255,255,0.1)_2.68%,#ffffff_33.24%,rgba(255,255,255,0.1)_99.29%)] before:[border-image-slice:1] before:pointer-events-none">
+                  <button className="cursor-pointer relative flex justify-center items-center gap-2 rounded-full py-3 px-8 border border-[#FFFFFF33]/[0.7]">
                     <img
                       className="w-4 h-4  rounded-full"
                       src={apple}
@@ -318,10 +318,10 @@ const Plans = () => {
                     <p className="text-white font-bold text-[16px] leading-6">
                       App Store
                     </p>
-                  </div>
+                  </button>
                 </AnimateFromLeft>
                 <AnimateFromRight>
-                  <div className="relative flex justify-center items-center gap-2 rounded-full py-3 px-8 before:absolute before:inset-0 before:rounded-full before:border-[1px] before:border-transparent before:[border-image-source:linear-gradient(270.82deg,rgba(255,255,255,0.1)_2.68%,#ffffff_33.24%,rgba(255,255,255,0.1)_99.29%)] before:[border-image-slice:1] before:pointer-events-none">
+                  <button className="cursor-pointer relative flex justify-center items-center gap-2 rounded-full py-3 px-8 border  border-[#FFFFFF33]/[0.7] shadow-md">
                     <img
                       className="w-4 h-4 rounded-full"
                       src={playstore}
@@ -330,7 +330,7 @@ const Plans = () => {
                     <p className="text-white font-bold text-[16px] leading-6">
                       Google Play
                     </p>
-                  </div>
+                  </button>
                 </AnimateFromRight>
               </div>
             </div>
@@ -352,6 +352,11 @@ const Plans = () => {
           </div>
         </div>
       </AnimateFromInside>
+      <img
+        className="absolute top-0 w-full -z-10"
+        src={pricetitleelipse}
+        alt="pricetitleelipse"
+      />
     </div>
   );
 };

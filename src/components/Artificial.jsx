@@ -101,7 +101,7 @@ const Artificial = () => {
             return (
               <div
                 key={index}
-                className={`relative bg-gradient-to-b flex flex-col gap-4 from-[#0E1712] to-[#040404] text-white p-3 w-72 rounded-xl transform transition-all duration-300 hover:scale-105 mx-2 ${positions[index]}
+                className={`relative bg-gradient-to-b flex  flex-col gap-4 from-[#0E1712] to-[#040404] text-white p-3 w-72 rounded-xl transform transition-all duration-300 hover:scale-105 mx-2 ${positions[index]}
                 shadow-[ -15px_28px_54.3px_0px_#00000040]
                 border-gradient
               `}

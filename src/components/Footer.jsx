@@ -19,7 +19,7 @@ import {
 const Footer = () => {
   return (
     <footer className="bg-[#070A07]  flex justify-center items-center flex-col  w-full">
-      <div className="flex justify-between items-center border px-32 py-6 w-full relative  gap-2 rounded-full  before:absolute before:inset-0 before:rounded-full before:border-[1px] before:border-transparent before:[border-image-source:linear-gradient(270.82deg,rgba(255,255,255,0.1)_2.68%,#ffffff_33.24%,rgba(255,255,255,0.1)_99.29%)] before:[border-image-slice:1] before:pointer-events-none">
+      <div className="flex justify-between items-center  px-32 py-6 w-full relative  gap-2  before:absolute before:inset-0 before:rounded-full before:border-[1px] before:border-transparent before:[border-image-source:linear-gradient(270.82deg,rgba(255,255,255,0.1)_2.68%,#ffffff_33.24%,rgba(255,255,255,0.1)_99.29%)] before:[border-image-slice:1] before:pointer-events-none">
         <AnimateFromBottom>
           <div className="flex flex-col justify-start items-start gap-8">
             <div className="flex flex-col justify-start items-start gap-4">

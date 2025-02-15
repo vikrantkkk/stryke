@@ -3,3 +3,36 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Set Inter as the default font */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+
+
+
+.animate-marquee {
+  display: flex;
+  width: 200%;
+  will-change: transform;
+  backface-visibility: hidden;
+  animation: marquee 50s linear infinite;
+}
+.animate-marquee1 {
+  display: flex;
+  width: 200%;
+  will-change: transform;
+  backface-visibility: hidden;
+  animation: marquee 40s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+

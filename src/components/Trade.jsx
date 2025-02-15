@@ -82,7 +82,7 @@ const Trade = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSection((prevSection) => (prevSection + 1) % sections.length);
-    }, 5000);
+    }, 10000);
     return () => clearInterval(interval); 
   }, []);
 
@@ -97,7 +97,7 @@ const Trade = () => {
         </AnimateFromBottom>
       </div>
 
-      <div className="flex w-full px-60 justify-between items-center">
+      <div className="flex w-full px-60 justify-between items-center h-96">
         {/* Left Section - Description and Points */}
         <div key={`content-${currentSection}`} className="w-full">
           <AnimateFromLeft>
