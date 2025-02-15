@@ -22,7 +22,7 @@ const Super = () => {
       </AnimateFromBottom>
       <div className="flex flex-col gap-8">
         <div className="animate-marquee overflow-hidden">
-          <div className="flex justify-center gap-10 w-full px-60">
+          <div className="flex justify-center gap-10 w-full">
             {continuousCards.map((feature, index) => (
               <div
                 key={index}
@@ -53,7 +53,7 @@ const Super = () => {
           </div>
         </div>
         <div className="animate-marquee1 overflow-hidden">
-          <div className="flex justify-center gap-10 w-full px-60">
+          <div className="flex justify-center gap-10 w-full">
             {continuousCards.map((feature, index) => (
               <div
                 key={index}
