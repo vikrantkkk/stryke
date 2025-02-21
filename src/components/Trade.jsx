@@ -97,7 +97,7 @@ const Trade = () => {
         </AnimateFromBottom>
       </div>
 
-      <div className="flex w-full px-60 justify-between items-center">
+      <div className="flex w-full px-60 justify-between items-center h-96">
         {/* Left Section - Description and Points */}
         <div key={`content-${currentSection}`} className="w-full">
           <AnimateFromLeft>
