@@ -1,5 +1,11 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import {
+  AnimateFromBottom,
+  AnimateFromLeft,
+  AnimateFromTop,
+  AnimateFromRight,
+  AnimateFromInside,
+} from "../common/ScrollFadeIn";
 import trade1 from "../assets/png/trade1.png";
 import trade2 from "../assets/png/trade2.png";
 import trade3 from "../assets/png/trade3.png";
@@ -70,65 +76,38 @@ const sections = [
   },
 ];
 
-// Variants for fade and slide animations
-const fadeVariants = {
-  initial: { opacity: 0, y: 50 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -50 },
-};
-
 const Trade = () => {
-  const { scrollY } = useScroll();
   const [currentSection, setCurrentSection] = useState(0);
 
-  // Use the viewport height as the threshold for each section.
-  // (Note: window.innerHeight is used here. For SSR safety, you may need additional checks.)
-  const sectionHeight = typeof window !== "undefined" ? window.innerHeight : 800;
-
-  // Listen to scroll changes using Framer Motion's hook.
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    // Calculate the active section based on scroll offset.
-    const newSection = Math.floor(latest / sectionHeight) % sections.length;
-    setCurrentSection(newSection);
-  });
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSection((prevSection) => (prevSection + 1) % sections.length);
+    }, 5000);
+    return () => clearInterval(interval); 
+  }, []);
 
   return (
-    <div className="bg-[#070A07] flex flex-col items-center gap-16 py-14 w-full relative">
-      {/* Animated Title */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={`title-${currentSection}`}
-          variants={fadeVariants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          transition={{ duration: 0.5 }}
-          className="w-full"
-        >
+    <div className="bg-[#070A07] flex flex-col items-center gap-16  py-14 w-full relative">
+      {/* Title with animation delay */}
+      <div key={`title-${currentSection}`} className="w-full">
+        <AnimateFromBottom>
           <h2 className="font-extrabold text-[80px] leading-[96px] text-white text-center">
             {sections[currentSection].title}
           </h2>
-        </motion.div>
-      </AnimatePresence>
+        </AnimateFromBottom>
+      </div>
 
-      <div className="flex w-full px-60 justify-between items-center h-96">
-        {/* Description & Points */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`content-${currentSection}`}
-            variants={fadeVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            transition={{ duration: 0.5 }}
-            className="w-full"
-          >
+      <div className="flex w-full px-60 justify-between items-center">
+        {/* Left Section - Description and Points */}
+        <div key={`content-${currentSection}`} className="w-full">
+          <AnimateFromLeft>
             <div className="flex flex-col flex-1 gap-6 items-start max-w-xl">
               <p className="font-normal text-[20px] leading-7 text-white/60">
                 {sections[currentSection].description}
               </p>
+
               {sections[currentSection].points.map((text, index) => (
-                <div
+                <p
                   key={index}
                   className="flex items-center gap-3 font-medium text-[20px] leading-7 text-white"
                 >
@@ -137,73 +116,54 @@ const Trade = () => {
                     src={correct}
                     alt="Check"
                   />
-                  <span>{text}</span>
-                </div>
+                  {text}
+                </p>
               ))}
             </div>
-          </motion.div>
-        </AnimatePresence>
+          </AnimateFromLeft>
+        </div>
 
-        {/* Images */}
+        {/* Right Section - Images */}
         <div className="flex w-1/2 gap-4 justify-end items-center">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`images-${currentSection}`}
-              variants={fadeVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition={{ duration: 0.5 }}
-              className="flex flex-col gap-4"
-            >
-              <motion.img
+          <div key={`images-${currentSection}`} className="flex flex-col gap-4">
+            <AnimateFromTop>
+              <img
                 className="object-cover"
                 src={trade1}
                 alt="Trade Example 1"
               />
-              <motion.img
+            </AnimateFromTop>
+            <AnimateFromBottom>
+              <img
                 className="object-cover"
                 src={trade2}
                 alt="Trade Example 2"
               />
-            </motion.div>
-          </AnimatePresence>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`trade3-${currentSection}`}
-              variants={fadeVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition={{ duration: 0.5 }}
-              className="flex items-center pb-6"
-            >
-              <motion.img
+            </AnimateFromBottom>
+          </div>
+          <div className="flex items-center pb-6">
+            <AnimateFromRight>
+              <img
                 className="object-cover"
                 src={trade3}
                 alt="Trade Example 3"
               />
-            </motion.div>
-          </AnimatePresence>
+            </AnimateFromRight>
+          </div>
         </div>
       </div>
 
-      {/* Button */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={`button-${currentSection}`}
-          variants={fadeVariants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
+      {/* Button with delay */}
+      <div key={`button-${currentSection}`}>
+        <AnimateFromInside style={{ animationDelay: "2.5s" }}>
           <Button name="Start Trading" />
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Decorative Element */}
-      <img className="absolute right-0" src={tradelipse} alt="tradelipse" />
+        </AnimateFromInside>
+      </div>
+      <img
+        className="absolute right-0"
+        src={tradelipse}
+        alt="tradelipse"
+      />
     </div>
   );
 };
