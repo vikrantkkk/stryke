@@ -282,34 +282,70 @@ const Hero = () => {
 
           {/* Individual stats */}
           <div className="flex flex-col justify-center items-center">
-            <span className="bg-gradient-to-r font-bold text-[24px] leading-7 from-[#1D870B] via-[#66D6AD] to-[#13B5E8] bg-clip-text text-transparent">
-              20K +
-            </span>
+            <div className="flex justify-center items-center">
+              <span className="bg-gradient-to-r font-bold text-[24px] leading-7 from-[#1D870B] via-[#66D6AD] to-[#13B5E8] bg-clip-text text-transparent">
+                20K +
+              </span>
+              <span>
+                <img
+                  className="max-w-full relative right-6 h-10 w-10"
+                  src={moon}
+                  alt="moon"
+                />
+              </span>
+            </div>
             <p className="font-normal text-[10px] leading-4">
               Satisfied Clients
             </p>
           </div>
 
           <div className="flex flex-col justify-center items-center">
-            <span className="bg-gradient-to-r font-bold text-[24px] leading-7 from-[#FFCC69] to-[#FF2222] bg-clip-text text-transparent">
-              5m/s
-            </span>
+            <div className="flex justify-center items-center">
+              <span className="bg-gradient-to-r font-bold text-[24px] leading-7 from-[#FFCC69] to-[#FF2222] bg-clip-text text-transparent">
+                5m/s
+              </span>
+              <span>
+                <img
+                  className="max-w-full relative right-6 h-10 w-10"
+                  src={rectangle}
+                  alt="rectangle"
+                />
+              </span>
+            </div>
             <p className="font-normal text-[10px] leading-4">
               Lightning Fast Executions
             </p>
           </div>
 
           <div className="flex flex-col justify-center items-center">
-            <span className="bg-gradient-to-r font-bold text-[24px] leading-7 from-[#1D870B] via-[#66D6AD] to-[#13B5E8] bg-clip-text text-transparent">
-              4.6/5+
-            </span>
+            <div className="flex items-center justify-center">
+              <span className="bg-gradient-to-r font-bold text-[24px] leading-7 from-[#1D870B] via-[#66D6AD] to-[#13B5E8] bg-clip-text text-transparent">
+                4.6/5+
+              </span>
+              <span>
+                <img
+                  className="max-w-full relative right-6 h-10 w-10"
+                  src={star}
+                  alt="star"
+                />
+              </span>
+            </div>
             <p className="font-normal text-[10px] leading-4">Avg Rating</p>
           </div>
 
           <div className="flex flex-col justify-center items-center">
-            <span className="font-bold text-[24px] leading-7 text-white bg-clip-text">
-              SEBI
-            </span>
+            <div className="flex items-center justify-center">
+              <span className="font-bold text-[24px] leading-7 text-white bg-clip-text">
+                SEBI
+              </span>
+              <span>
+                <img
+                  className="max-w-full relative right-4 bottom-1 h-10 w-10"
+                  src={traingle}
+                  alt="traingle"
+                />
+              </span>
+            </div>
             <p className="font-normal text-[10px] leading-4">Registered</p>
           </div>
         </div>
