@@ -67,14 +67,14 @@ const Header = () => {
             <a href="/" className="flex items-center">
               <img src={logo} alt="MyBrand Logo" className="h-7" />
             </a>
-            <p className="text-white font-medium text-[14px] leading-4">
+            <p className="text-white font-medium text-[14px] leading-4 md:block hidden">
               A Unit of Stockwiz Group
             </p>
           </div>
         </AnimateFromLeft>
 
         <AnimateFromTop>
-          <div className="flex justify-center items-center gap-x-4 pl-2 rounded-full border border-[#FFFFFF33]/[0.7]">
+          <div className=" justify-center items-center gap-x-4 pl-2 rounded-full border border-[#FFFFFF33]/[0.7] md:flex hidden">
             <img src={halflogo} alt="MyBrand Logo" className="" />
             {navItems.map((item, index) => (
               <button
@@ -92,8 +92,8 @@ const Header = () => {
 
         <AnimateFromRight>
           <div className="flex gap-6 items-center justify-center">
-            <img src={logo1} alt="MyBrand Logo" />
-            <img src={whatsapp} alt="WhatsApp" className="h-[24px] w-[24px] mt-4" />
+            <img src={logo1} alt="MyBrand Logo" className="md:block hidden"/>
+            <img src={whatsapp} alt="WhatsApp" className="h-[24px] w-[24px] md:mt-4" />
           </div>
         </AnimateFromRight>
       </nav>

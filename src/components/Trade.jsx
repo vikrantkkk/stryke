@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   AnimateFromBottom,
   AnimateFromLeft,
@@ -78,92 +78,119 @@ const sections = [
 
 const Trade = () => {
   const [currentSection, setCurrentSection] = useState(0);
+  const containerRef = useRef(null);
+  const wrapperRef = useRef(null);
+  const totalHeight = (sections.length + 1) * 100;
+  const headerHeight = 20; // p-5 equals 1.25rem or 20px
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSection((prevSection) => (prevSection + 1) % sections.length);
-    }, 5000);
-    return () => clearInterval(interval); 
-  }, []);
+    const handleScroll = () => {
+      if (!wrapperRef.current) return;
+
+      const wrapperRect = wrapperRef.current.getBoundingClientRect();
+      const scrollProgress = -(wrapperRect.top - headerHeight);
+      const sectionHeight = window.innerHeight;
+      
+      if (wrapperRect.top <= headerHeight) {
+        const sectionIndex = Math.floor(scrollProgress / sectionHeight);
+        const newSection = Math.min(Math.max(0, sectionIndex), sections.length - 1);
+        
+        if (newSection !== currentSection) {
+          setCurrentSection(newSection);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [currentSection]);
 
   return (
-    <div className="bg-[#070A07] flex flex-col items-center gap-16  py-14 w-full relative">
-      {/* Title with animation delay */}
-      <div key={`title-${currentSection}`} className="w-full">
-        <AnimateFromBottom>
-          <h2 className="font-extrabold text-[80px] leading-[96px] text-white text-center">
-            {sections[currentSection].title}
-          </h2>
-        </AnimateFromBottom>
-      </div>
-
-      <div className="flex w-full px-60 justify-between items-center h-96">
-        {/* Left Section - Description and Points */}
-        <div key={`content-${currentSection}`} className="w-full">
-          <AnimateFromLeft>
-            <div className="flex flex-col flex-1 gap-6 items-start max-w-xl">
-              <p className="font-normal text-[20px] leading-7 text-white/60">
-                {sections[currentSection].description}
-              </p>
-
-              {sections[currentSection].points.map((text, index) => (
-                <p
-                  key={index}
-                  className="flex items-center gap-3 font-medium text-[20px] leading-7 text-white"
-                >
-                  <img
-                    className="w-16 h-16 object-contain"
-                    src={correct}
-                    alt="Check"
-                  />
-                  {text}
-                </p>
-              ))}
-            </div>
-          </AnimateFromLeft>
-        </div>
-
-        {/* Right Section - Images */}
-        <div className="flex w-1/2 gap-4 justify-end items-center">
-          <div key={`images-${currentSection}`} className="flex flex-col gap-4">
-            <AnimateFromTop>
-              <img
-                className="object-cover"
-                src={trade1}
-                alt="Trade Example 1"
-              />
-            </AnimateFromTop>
+    <div 
+      ref={wrapperRef}
+      className="relative bg-[#070A07]"
+      style={{ height: `${totalHeight}vh` }}
+    >
+      <div 
+        ref={containerRef}
+        className="sticky top-20 left-0 w-full h-[calc(100vh-80px)] flex items-center"
+      >
+        <div className="flex flex-col items-center gap-16 w-full">
+          {/* Title */}
+          <div key={`title-${currentSection}`} className="w-full">
             <AnimateFromBottom>
-              <img
-                className="object-cover"
-                src={trade2}
-                alt="Trade Example 2"
-              />
+              <h2 className="font-extrabold text-[80px] leading-[96px] text-white text-center">
+                {sections[currentSection].title}
+              </h2>
             </AnimateFromBottom>
           </div>
-          <div className="flex items-center pb-6">
-            <AnimateFromRight>
-              <img
-                className="object-cover"
-                src={trade3}
-                alt="Trade Example 3"
-              />
-            </AnimateFromRight>
+
+          <div className="flex w-full px-60 justify-between items-center">
+            {/* Left Section - Description and Points */}
+            <div key={`content-${currentSection}`} className="w-full">
+              <AnimateFromLeft>
+                <div className="flex flex-col flex-1 gap-6 items-start max-w-xl">
+                  <p className="font-normal text-[20px] leading-7 text-white/60">
+                    {sections[currentSection].description}
+                  </p>
+                  {sections[currentSection].points.map((text, index) => (
+                    <p
+                      key={index}
+                      className="flex items-center gap-3 font-medium text-[20px] leading-7 text-white"
+                    >
+                      <img
+                        className="w-16 h-16 object-contain"
+                        src={correct}
+                        alt="Check"
+                      />
+                      {text}
+                    </p>
+                  ))}
+                </div>
+              </AnimateFromLeft>
+            </div>
+
+            {/* Right Section - Images */}
+            <div className="flex w-1/2 gap-4 justify-end items-center">
+              <div key={`images-${currentSection}`} className="flex flex-col gap-4">
+                <AnimateFromTop>
+                  <img
+                    className="object-cover"
+                    src={trade1}
+                    alt="Trade Example 1"
+                  />
+                </AnimateFromTop>
+                <AnimateFromBottom>
+                  <img
+                    className="object-cover"
+                    src={trade2}
+                    alt="Trade Example 2"
+                  />
+                </AnimateFromBottom>
+              </div>
+              <div className="flex items-center pb-6">
+                <AnimateFromRight>
+                  <img
+                    className="object-cover"
+                    src={trade3}
+                    alt="Trade Example 3"
+                  />
+                </AnimateFromRight>
+              </div>
+            </div>
+          </div>
+
+          {/* Button */}
+          <div key={`button-${currentSection}`}>
+            <AnimateFromInside>
+              <Button name="Start Trading" />
+            </AnimateFromInside>
           </div>
         </div>
-      </div>
 
-      {/* Button with delay */}
-      <div key={`button-${currentSection}`}>
-        <AnimateFromInside style={{ animationDelay: "2.5s" }}>
-          <Button name="Start Trading" />
-        </AnimateFromInside>
+        <img className="absolute right-0" src={tradelipse} alt="tradelipse" />
       </div>
-      <img
-        className="absolute right-0"
-        src={tradelipse}
-        alt="tradelipse"
-      />
     </div>
   );
 };
