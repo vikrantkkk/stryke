@@ -13,7 +13,7 @@ const Works = () => {
   return (
     <div className="bg-[#070A07] flex flex-col items-center gap-16 py-14 w-full relative">
       <AnimateFromBottom>
-        <h2 className="font-extrabold text-[80px] leading-[96px] text-white text-center">
+        <h2 className="md:font-extrabold font-bold md:text-[80px] text-[28px] md:leading-[96px] leading-8 text-white text-center">
           How It <span className="text-[#C0FF73]">Works?</span>
         </h2>
       </AnimateFromBottom>
