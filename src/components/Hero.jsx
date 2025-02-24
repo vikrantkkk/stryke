@@ -260,7 +260,7 @@ const Hero = () => {
         </div>
       </div>
       <div
-        className="w-full md:hidden flex justify-center items-center flex-col  relative top-10 pb-10 pt-6"
+        className="w-full md:hidden flex justify-center items-center flex-col  relative top-10  p-6"
         style={{
           borderWidth: "1px 0px 1px 0px",
           borderStyle: "solid",
@@ -324,7 +324,7 @@ const Hero = () => {
               </span>
               <span>
                 <img
-                  className="max-w-full relative right-6 h-10 w-10"
+                  className="max-w-full relative right-6  h-10 w-10"
                   src={star}
                   alt="star"
                 />

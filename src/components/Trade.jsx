@@ -80,8 +80,11 @@ const Trade = () => {
   const [currentSection, setCurrentSection] = useState(0);
   const containerRef = useRef(null);
   const wrapperRef = useRef(null);
-  const totalHeight = (sections.length + 1) * 100;
-  const headerHeight = 20; // p-5 equals 1.25rem or 20px
+  const isMobile = window.innerWidth < 768; // md breakpoint
+  const totalHeight = isMobile
+    ? sections.length * 100
+    : (sections.length + 1) * 100;
+  const headerHeight = 20;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -90,11 +93,14 @@ const Trade = () => {
       const wrapperRect = wrapperRef.current.getBoundingClientRect();
       const scrollProgress = -(wrapperRect.top - headerHeight);
       const sectionHeight = window.innerHeight;
-      
+
       if (wrapperRect.top <= headerHeight) {
         const sectionIndex = Math.floor(scrollProgress / sectionHeight);
-        const newSection = Math.min(Math.max(0, sectionIndex), sections.length - 1);
-        
+        const newSection = Math.min(
+          Math.max(0, sectionIndex),
+          sections.length - 1
+        );
+
         if (newSection !== currentSection) {
           setCurrentSection(newSection);
         }
@@ -107,89 +113,150 @@ const Trade = () => {
   }, [currentSection]);
 
   return (
-    <div 
+    <div
       ref={wrapperRef}
       className="relative bg-[#070A07]"
       style={{ height: `${totalHeight}vh` }}
     >
-      <div 
+      <div
         ref={containerRef}
-        className="sticky top-20 left-0 w-full h-[calc(100vh-80px)] flex items-center"
+        className="sticky top-20 left-0 w-full min-h-[calc(100vh-80px)] flex items-center py-8 md:py-0"
       >
-        <div className="flex flex-col items-center gap-16 w-full">
+        <div className="flex flex-col items-center w-full gap-8 md:gap-16">
           {/* Title */}
           <div key={`title-${currentSection}`} className="w-full">
             <AnimateFromBottom>
-              <h2 className="font-extrabold text-[80px] leading-[96px] text-white text-center">
+              <h2 className="md:font-extrabold font-bold text-[28px] md:text-[80px] leading-8 md:leading-[96px] text-white text-center px-4 md:px-0">
                 {sections[currentSection].title}
               </h2>
             </AnimateFromBottom>
           </div>
 
-          <div className="flex w-full px-60 justify-between items-center">
-            {/* Left Section - Description and Points */}
-            <div key={`content-${currentSection}`} className="w-full">
+          <div className="flex flex-col md:flex-row w-full md:px-60 justify-between items-center">
+            {/* Mobile Layout */}
+            <div className="flex flex-col w-full gap-6 px-4 md:hidden">
               <AnimateFromLeft>
-                <div className="flex flex-col flex-1 gap-6 items-start max-w-xl">
-                  <p className="font-normal text-[20px] leading-7 text-white/60">
-                    {sections[currentSection].description}
-                  </p>
-                  {sections[currentSection].points.map((text, index) => (
-                    <p
-                      key={index}
-                      className="flex items-center gap-3 font-medium text-[20px] leading-7 text-white"
-                    >
-                      <img
-                        className="w-16 h-16 object-contain"
-                        src={correct}
-                        alt="Check"
-                      />
-                      {text}
-                    </p>
-                  ))}
-                </div>
+                <p className="font-normal text-[14px] leading-5 text-white/60 text-center">
+                  {sections[currentSection].description}
+                </p>
               </AnimateFromLeft>
+
+              <div className="flex justify-center items-center gap-3">
+                <div className="flex flex-col gap-3 w-[30%]">
+                  <AnimateFromTop>
+                    <img
+                      className="w-full object-cover rounded-lg"
+                      src={trade1}
+                      alt="Trade Example 1"
+                    />
+                  </AnimateFromTop>
+                  <AnimateFromBottom>
+                    <img
+                      className="w-full object-cover rounded-lg"
+                      src={trade2}
+                      alt="Trade Example 2"
+                    />
+                  </AnimateFromBottom>
+                </div>
+                <div className="flex-1">
+                  <AnimateFromRight>
+                    <img
+                      className="object-cover rounded-lg"
+                      src={trade3}
+                      alt="Trade Example 3"
+                    />
+                  </AnimateFromRight>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                {sections[currentSection].points.map((text, index) => (
+                  <p
+                    key={index}
+                    className="flex items-center gap-2 font-medium text-[16px] leading-6 text-white"
+                  >
+                    <img
+                      className="w-16 h-16 object-"
+                      src={correct}
+                      alt="Check"
+                    />
+                    {text}
+                  </p>
+                ))}
+              </div>
             </div>
 
-            {/* Right Section - Images */}
-            <div className="flex w-1/2 gap-4 justify-end items-center">
-              <div key={`images-${currentSection}`} className="flex flex-col gap-4">
-                <AnimateFromTop>
-                  <img
-                    className="object-cover"
-                    src={trade1}
-                    alt="Trade Example 1"
-                  />
-                </AnimateFromTop>
-                <AnimateFromBottom>
-                  <img
-                    className="object-cover"
-                    src={trade2}
-                    alt="Trade Example 2"
-                  />
-                </AnimateFromBottom>
+            {/* Desktop Layout - Preserved Exactly as Original */}
+            <div className="hidden md:flex w-full">
+              <div key={`content-${currentSection}`} className="w-full">
+                <AnimateFromLeft>
+                  <div className="flex flex-col flex-1 gap-6 items-start max-w-xl">
+                    <p className="font-normal text-[20px] leading-7 text-white/60">
+                      {sections[currentSection].description}
+                    </p>
+                    {sections[currentSection].points.map((text, index) => (
+                      <p
+                        key={index}
+                        className="flex items-center gap-3 font-medium text-[20px] leading-7 text-white"
+                      >
+                        <img
+                          className="w-16 h-16 object-contain"
+                          src={correct}
+                          alt="Check"
+                        />
+                        {text}
+                      </p>
+                    ))}
+                  </div>
+                </AnimateFromLeft>
               </div>
-              <div className="flex items-center pb-6">
-                <AnimateFromRight>
-                  <img
-                    className="object-cover"
-                    src={trade3}
-                    alt="Trade Example 3"
-                  />
-                </AnimateFromRight>
+
+              <div className="flex w-1/2 gap-4 justify-end items-center">
+                <div
+                  key={`images-${currentSection}`}
+                  className="flex flex-col gap-4"
+                >
+                  <AnimateFromTop>
+                    <img
+                      className="object-cover"
+                      src={trade1}
+                      alt="Trade Example 1"
+                    />
+                  </AnimateFromTop>
+                  <AnimateFromBottom>
+                    <img
+                      className="object-cover"
+                      src={trade2}
+                      alt="Trade Example 2"
+                    />
+                  </AnimateFromBottom>
+                </div>
+                <div className="flex items-center pb-6">
+                  <AnimateFromRight>
+                    <img
+                      className="object-cover"
+                      src={trade3}
+                      alt="Trade Example 3"
+                    />
+                  </AnimateFromRight>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Button */}
-          <div key={`button-${currentSection}`}>
+    
             <AnimateFromInside>
               <Button name="Start Trading" />
             </AnimateFromInside>
-          </div>
+         
         </div>
 
-        <img className="absolute right-0" src={tradelipse} alt="tradelipse" />
+        <img
+          className="absolute right-0 hidden md:block"
+          src={tradelipse}
+          alt="tradelipse"
+        />
       </div>
     </div>
   );
