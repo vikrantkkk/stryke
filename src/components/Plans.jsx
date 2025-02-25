@@ -203,7 +203,7 @@ const Plans = () => {
                   Inclusive of 18% GST
                 </p>
               </div>
-              <p className="md:hideen font-normal md:text-[14px] text-[12px] text-[#FFFFFFCC]/[0.8]">
+              <p className="md:hidden font-normal md:text-[14px] text-[12px] text-[#FFFFFFCC]/[0.8]">
                 Designed for serious traders and investors who want to become
                 full-time traders.
               </p>
