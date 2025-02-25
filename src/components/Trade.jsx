@@ -80,27 +80,59 @@ const Trade = () => {
   const [currentSection, setCurrentSection] = useState(0);
   const containerRef = useRef(null);
   const wrapperRef = useRef(null);
-  const isMobile = window.innerWidth < 768; // md breakpoint
-  const totalHeight = isMobile
-    ? sections.length * 100
-    : (sections.length + 1) * 100;
+  const [isMobile, setIsMobile] = useState(false);
   const headerHeight = 20;
+
+  // Update isMobile state when window size changes
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+
+    handleResize(); // Set initial value
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Calculate total height based on whether it's mobile or desktop
+  const totalHeight = isMobile 
+    ? Math.max(100, sections.length * 60) // Reduced height for mobile
+    : (sections.length + 1) * 100; // Original height for desktop
 
   useEffect(() => {
     const handleScroll = () => {
       if (!wrapperRef.current) return;
 
       const wrapperRect = wrapperRef.current.getBoundingClientRect();
-      const scrollProgress = -(wrapperRect.top - headerHeight);
-      const sectionHeight = window.innerHeight;
-
-      if (wrapperRect.top <= headerHeight) {
-        const sectionIndex = Math.floor(scrollProgress / sectionHeight);
-        const newSection = Math.min(
-          Math.max(0, sectionIndex),
-          sections.length - 1
-        );
-
+      const wrapperHeight = wrapperRef.current.offsetHeight;
+      const windowHeight = window.innerHeight;
+      
+      // If we're scrolled to the component
+      if (wrapperRect.top <= headerHeight && wrapperRect.bottom > 0) {
+        // Calculate mobile scroll sensitivity - more sensitive than desktop
+        const sectionScrollLength = isMobile 
+          ? windowHeight * 0.4 // Much smaller scroll amount for each section on mobile
+          : windowHeight;
+        
+        // Calculate how far we've scrolled into the component
+        const scrollProgress = -(wrapperRect.top - headerHeight);
+        const scrollPercentage = Math.min(1, Math.max(0, scrollProgress / (wrapperHeight - windowHeight)));
+        
+        // For mobile: Map the scroll percentage directly to section index
+        // This makes it smoother and ensures we reach all sections
+        let newSection;
+        if (isMobile) {
+          // Direct mapping based on scroll percentage
+          newSection = Math.min(
+            sections.length - 1,
+            Math.floor(scrollPercentage * sections.length)
+          );
+        } else {
+          // Original desktop calculation
+          const sectionIndex = Math.floor(scrollProgress / sectionScrollLength);
+          newSection = Math.min(Math.max(0, sectionIndex), sections.length - 1);
+        }
+        
         if (newSection !== currentSection) {
           setCurrentSection(newSection);
         }
@@ -108,9 +140,16 @@ const Trade = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [currentSection]);
+    handleScroll(); // Call once to set initial state
+    
+    // Add a small timeout to ensure scroll handler runs after initial render
+    const timeout = setTimeout(handleScroll, 100);
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timeout);
+    };
+  }, [currentSection, isMobile]);
 
   return (
     <div
@@ -123,10 +162,22 @@ const Trade = () => {
         className="sticky top-20 left-0 w-full min-h-[calc(100vh-80px)] flex items-center py-8 md:px-0 px-4 md:py-0"
       >
         <div className="flex flex-col items-center w-full gap-8 md:gap-16">
+          {/* Indicators for Mobile - Shows which section we're on */}
+          {isMobile && (
+            <div className="w-full flex justify-center gap-2 mt-2">
+              {sections.map((_, index) => (
+                <div 
+                  key={`indicator-${index}`} 
+                  className={`h-2 rounded-full ${currentSection === index ? 'w-6 bg-green-500' : 'w-2 bg-gray-500'}`}
+                />
+              ))}
+            </div>
+          )}
+          
           {/* Title */}
           <div key={`title-${currentSection}`} className="w-full">
-            <AnimateFromBottom>
-              <h2 className="md:font-extrabold font-bold text-[28px] md:text-[80px] leading-8 md:leading-[96px] text-white text-center  md:px-0">
+            <AnimateFromBottom key={`anim-title-${currentSection}`}>
+              <h2 className="md:font-extrabold font-bold text-[28px] md:text-[80px] leading-8 md:leading-[96px] text-white text-center md:px-0">
                 {sections[currentSection].title}
               </h2>
             </AnimateFromBottom>
@@ -134,23 +185,23 @@ const Trade = () => {
 
           <div className="flex flex-col md:flex-row w-full md:px-60 justify-between items-center">
             {/* Mobile Layout */}
-            <div className="flex flex-col w-full gap-6  md:hidden">
-              <AnimateFromLeft>
+            <div className="flex flex-col w-full gap-6 md:hidden">
+              <AnimateFromLeft key={`anim-desc-${currentSection}`}>
                 <p className="font-normal text-[14px] leading-5 text-white/60 text-center">
                   {sections[currentSection].description}
                 </p>
               </AnimateFromLeft>
 
-              <div className="flex justify-center items-center gap-3 ">
+              <div className="flex justify-center items-center gap-3">
                 <div className="flex flex-col gap-3 w-[30%]">
-                  <AnimateFromTop>
+                  <AnimateFromTop key={`anim-img1-${currentSection}`}>
                     <img
                       className="w-full object-cover rounded-lg"
                       src={trade1}
                       alt="Trade Example 1"
                     />
                   </AnimateFromTop>
-                  <AnimateFromBottom>
+                  <AnimateFromBottom key={`anim-img2-${currentSection}`}>
                     <img
                       className="w-full object-cover rounded-lg"
                       src={trade2}
@@ -159,9 +210,9 @@ const Trade = () => {
                   </AnimateFromBottom>
                 </div>
                 <div className="flex-1">
-                  <AnimateFromRight>
+                  <AnimateFromRight key={`anim-img3-${currentSection}`}>
                     <img
-                      className="object-cover  rounded-lg"
+                      className="object-cover rounded-lg"
                       src={trade3}
                       alt="Trade Example 3"
                     />
@@ -171,17 +222,18 @@ const Trade = () => {
 
               <div className="flex flex-col gap-4">
                 {sections[currentSection].points.map((text, index) => (
-                  <p
-                    key={index}
-                    className="flex items-center gap-2 font-medium text-[16px] leading-6 text-white"
-                  >
-                    <img
-                      className="w-16 h-16 object-"
-                      src={correct}
-                      alt="Check"
-                    />
-                    {text}
-                  </p>
+                  <AnimateFromLeft key={`anim-point-${currentSection}-${index}`} delay={index * 0.1}>
+                    <p
+                      className="flex items-center gap-2 font-medium text-[16px] leading-6 text-white"
+                    >
+                      <img
+                        className="w-6 h-6 object-contain" 
+                        src={correct}
+                        alt="Check"
+                      />
+                      {text}
+                    </p>
+                  </AnimateFromLeft>
                 ))}
               </div>
             </div>
@@ -189,18 +241,18 @@ const Trade = () => {
             {/* Desktop Layout - Preserved Exactly as Original */}
             <div className="hidden md:flex w-full">
               <div key={`content-${currentSection}`} className="w-full">
-                <AnimateFromLeft>
+                <AnimateFromLeft key={`anim-desk-desc-${currentSection}`}>
                   <div className="flex flex-col flex-1 gap-6 items-start max-w-xl">
                     <p className="font-normal text-[20px] leading-7 text-white/60">
                       {sections[currentSection].description}
                     </p>
                     {sections[currentSection].points.map((text, index) => (
                       <p
-                        key={index}
+                        key={`desk-point-${index}`}
                         className="flex items-center gap-3 font-medium text-[20px] leading-7 text-white"
                       >
                         <img
-                          className="w-16 h-16 object-contain"
+                          className="w-6 h-6 object-contain"
                           src={correct}
                           alt="Check"
                         />
@@ -216,14 +268,14 @@ const Trade = () => {
                   key={`images-${currentSection}`}
                   className="flex flex-col gap-4"
                 >
-                  <AnimateFromTop>
+                  <AnimateFromTop key={`anim-desk-img1-${currentSection}`}>
                     <img
                       className="object-cover"
                       src={trade1}
                       alt="Trade Example 1"
                     />
                   </AnimateFromTop>
-                  <AnimateFromBottom>
+                  <AnimateFromBottom key={`anim-desk-img2-${currentSection}`}>
                     <img
                       className="object-cover"
                       src={trade2}
@@ -232,7 +284,7 @@ const Trade = () => {
                   </AnimateFromBottom>
                 </div>
                 <div className="flex items-center pb-6">
-                  <AnimateFromRight>
+                  <AnimateFromRight key={`anim-desk-img3-${currentSection}`}>
                     <img
                       className="object-cover"
                       src={trade3}
@@ -245,11 +297,9 @@ const Trade = () => {
           </div>
 
           {/* Button */}
-    
-            <AnimateFromInside>
-              <Button name="Start Trading" />
-            </AnimateFromInside>
-         
+          <AnimateFromInside>
+            <Button name="Start Trading" />
+          </AnimateFromInside>
         </div>
 
         <img
