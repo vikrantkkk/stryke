@@ -36,52 +36,58 @@ const Plans = () => {
       <AnimateFromInside>
         <div className="relative flex justify-between md:my-0 my-6 items-center border border-[#FFFFFF4D]/[0.3] p-1 rounded-l-md">
           <button
-            className={`font-medium text-[20px] leading-6 text-white px-4 py-2 rounded-md cursor-pointer transition-all duration-300 ${
+            className={`font-medium nd:text-[20px] text-[12px] md:leading-6 leading-4 text-white md:px-4 px-10 py-2 rounded-md cursor-pointer transition-all duration-300 ${
               isMonthly ? "bg-[#131513] shadow-md" : "bg-transparent"
             }`}
             onClick={() => setIsMonthly(true)}
           >
-            Monthly Billing
+            <span className="md:block hidden">Monthly Billing</span>{" "}
+            <span className="md:hidden">Monthly</span>
           </button>
           <button
-            className={`font-medium text-[20px] leading-6 text-white px-4 py-2 rounded-md cursor-pointer transition-all duration-300 ${
+            className={`font-medium md:text-[20px] text-[12px] md:leading-6 leading-4 text-white md:px-4 px-10 py-2 rounded-md cursor-pointer transition-all duration-300 ${
               !isMonthly ? "bg-[#131513]  shadow-md" : "bg-transparent"
             }`}
             onClick={() => setIsMonthly(false)}
           >
-            Yearly Billing
+            <span className="md:block hidden">Yearly Billing</span>{" "}
+            <span className="md:hidden">Yearly</span>
           </button>
-          <p className="absolute -bottom-8 right-0 font-medium text-[20px] leading-6 bg-[#DF484D] text-white px-2 py-1 rounded-b-md">
+          <p className="absolute md:-bottom-8 -bottom-6 right-0 font-medium md:text-[20px] text-[12px] md:leading-6 leading-4 bg-[#DF484D] text-white px-2 py-1 rounded-b-md">
             Most Popular
           </p>
-          <p className="absolute border-t border-l border-r border-[#FFFFFF4D]/[0.3] -top-8 right-0 font-medium text-[20px] leading-6  text-white px-2 py-1 rounded-t-md">
+          <p className="absolute border-t border-l border-r border-[#FFFFFF4D]/[0.3] md:-top-8 -top-6 right-0 font-medium md:text-[20px] text-[12px] md:leading-6 leading-4  text-white px-2 py-1 rounded-t-md">
             30% Off
           </p>
         </div>
       </AnimateFromInside>
-      <div className="flex md:flex-row flex-col justify-center items-start md:gap-16 gap-6 md:px-10 px-4 w-full">
+      <div className="flex md:flex-row flex-col justify-center items-start md:gap-16 gap-6 md:px-10 w-full">
         {/* Hindi Card */}
         <AnimateFromLeft>
           <div className="flex flex-col justify-center items-center gap-8 rounded-3xl md:p-8 p-4 w-full md:w-md text-white border border-[rgba(255,255,255,0.3)] cursor-pointer relative group hover:border-[#08DC83]">
             <div className="flex flex-col justify-center items-start gap-3">
-              <h2 className="font-medium text-[26px] leading-8 text-[#70FBC8]">
+              <h2 className="font-medium md:text-[26px] text-[20.5px] md:leading-8 leading-6 text-[#70FBC8]">
                 Hindi
               </h2>
-              <p className="font-normal text-[14px] leading-4 text-[#FFFFFFCC]/[0.8]">
+              <p className="md:block hidden font-normal text-[14px] leading-4 text-[#FFFFFFCC]/[0.8]">
                 Designed for serious traders and investors who want to become
                 full-time traders.
               </p>
               <div className="flex justify-center items-end gap-2">
-                <p className="font-bold text-[38px] leading-12 text-[#FFFFFF]">
+                <p className="font-bold md:text-[38px] text-[28px] md:leading-12 leading-8 text-[#FFFFFF]">
                   ₹ 19,999
                 </p>
-                <p className="font-normal text-[14px] leading-4 text-[#FFFFFFCC]/[0.8] pb-2">
+                <p className="font-normal md:text-[14px] text-[12px] leading-4 text-[#FFFFFFCC]/[0.8] pb-2">
                   Inclusive of 18% GST
                 </p>
               </div>
+              <p className="md:hidden font-normal md:text-[14px] text-[12px] text-[#FFFFFFCC]/[0.8]">
+                Designed for serious traders and investors who want to become
+                full-time traders.
+              </p>
             </div>
             <ul className="flex flex-col gap-4 w-full">
-              <p className="text-start font-semibold text-[18px] leading-6">
+              <p className="text-start font-semibold md:text-[18px] text-[14px] md:leading-6 leading-4">
                 Includes:
               </p>
               {/* List of features with correct bold formatting */}
@@ -90,7 +96,7 @@ const Plans = () => {
                   fontSize="small"
                   className="text-white"
                 />
-                <p className="font-normal text-[16px] leading-6">
+                <p className="font-normal md:text-[18px] text-[14px] md:leading-6 leading-5">
                   Super Trader Course with{" "}
                   <span className="font-bold">
                     Live & Pre-Recorded Sessions
@@ -102,7 +108,7 @@ const Plans = () => {
                   fontSize="small"
                   className="text-white"
                 />
-                <p className="font-normal text-[16px] leading-6">
+                <p className="font-normal md:text-[18px] text-[14px] md:leading-6 leading-5">
                   Access to 10+ Institutional Trading Strategies
                 </p>
               </div>
@@ -111,7 +117,7 @@ const Plans = () => {
                   fontSize="small"
                   className="text-white"
                 />
-                <p className="font-normal text-[16px] leading-6">
+                <p className="font-normal md:text-[18px] text-[14px] md:leading-6 leading-5">
                   <span className="font-bold">
                     Daily Trading & Investing Signals
                   </span>{" "}
@@ -123,7 +129,7 @@ const Plans = () => {
                   fontSize="small"
                   className="text-white"
                 />
-                <p className="font-normal text-[16px] leading-6">
+                <p className="font-normal md:text-[18px] text-[14px] md:leading-6 leading-5">
                   Daily Watchlist, Stock Research, and{" "}
                   <span className="font-bold">Assistance with Trade Buddy</span>
                 </p>
@@ -133,7 +139,7 @@ const Plans = () => {
                   fontSize="small"
                   className="text-white"
                 />
-                <p className="font-normal text-[16px] leading-6">
+                <p className="font-normal md:text-[18px] text-[14px] md:leading-6 leading-5">
                   Daily <span className="font-bold">LIVE Trading</span> with
                   SEBI <span className="font-bold">Registered Experts</span>
                 </p>
@@ -143,7 +149,7 @@ const Plans = () => {
                   fontSize="small"
                   className="text-white"
                 />
-                <p className="font-normal text-[16px] leading-6">
+                <p className="font-normal md:text-[18px] text-[14px] md:leading-6 leading-5">
                   Complimentary Access to{" "}
                   <span className="font-bold">StockWiz Trading App</span>{" "}
                   (Launching July 2024)
@@ -154,7 +160,7 @@ const Plans = () => {
                   fontSize="small"
                   className="text-white"
                 />
-                <p className="font-normal text-[16px] leading-6">
+                <p className="font-normal md:text-[18px] text-[14px] md:leading-6 leading-5">
                   <span className="font-bold">Lifetime</span> Doubt Support
                 </p>
               </div>
@@ -182,24 +188,28 @@ const Plans = () => {
             }}
           >
             <div className="flex flex-col justify-center items-start gap-3">
-              <h2 className="font-medium text-[26px] leading-8 text-[#70FBC8]">
+              <h2 className="font-medium md:text-[26px] text-[20.5px] md:leading-8 leading-6 text-[#70FBC8]">
                 English
               </h2>
-              <p className="font-normal text-[14px] leading-4 text-[#FFFFFFCC]/[0.8]">
+              <p className="md:block hidden font-normal text-[14px] leading-4 text-[#FFFFFFCC]/[0.8]">
                 Designed for serious traders and investors who want to become
                 full-time traders.
               </p>
               <div className="flex justify-center items-end gap-2">
-                <p className="font-bold text-[38px] leading-12 text-[#FFFFFF]">
+                <p className="font-bold md:text-[38px] text-[28px] md:leading-12 leading-8 text-[#FFFFFF]">
                   ₹ 19,999
                 </p>
-                <p className="font-normal text-[14px] leading-4 text-[#FFFFFFCC]/[0.8] pb-2">
+                <p className="font-normal md:text-[14px] text-[12px] text-[#FFFFFFCC]/[0.8] pb-2">
                   Inclusive of 18% GST
                 </p>
               </div>
+              <p className="md:hideen font-normal md:text-[14px] text-[12px] text-[#FFFFFFCC]/[0.8]">
+                Designed for serious traders and investors who want to become
+                full-time traders.
+              </p>
             </div>
             <ul className="flex flex-col gap-4 w-full">
-              <p className="text-start font-semibold text-[18px] leading-6">
+              <p className="text-start font-semibold md:text-[18px] text-[14px] md:leading-6 leading-4">
                 Includes:
               </p>
               {/* List of features with correct bold formatting */}
@@ -208,7 +218,7 @@ const Plans = () => {
                   fontSize="small"
                   className="text-white"
                 />
-                <p className="font-normal text-[16px] leading-6">
+                <p className="font-normal md:text-[18px] text-[14px] md:leading-6 leading-5">
                   Super Trader Course with{" "}
                   <span className="font-bold">
                     Live & Pre-Recorded Sessions
@@ -220,7 +230,7 @@ const Plans = () => {
                   fontSize="small"
                   className="text-white"
                 />
-                <p className="font-normal text-[16px] leading-6">
+                <p className="font-normal md:text-[18px] text-[14px] md:leading-6 leading-5">
                   Access to 10+ Institutional Trading Strategies
                 </p>
               </div>
@@ -229,7 +239,7 @@ const Plans = () => {
                   fontSize="small"
                   className="text-white"
                 />
-                <p className="font-normal text-[16px] leading-6">
+                <p className="font-normal md:text-[18px] text-[14px] md:leading-6 leading-5">
                   <span className="font-bold">
                     Daily Trading & Investing Signals
                   </span>{" "}
@@ -241,7 +251,7 @@ const Plans = () => {
                   fontSize="small"
                   className="text-white"
                 />
-                <p className="font-normal text-[16px] leading-6">
+                <p className="font-normal md:text-[18px] text-[14px] md:leading-6 leading-5">
                   Daily Watchlist, Stock Research, and{" "}
                   <span className="font-bold">Assistance with Trade Buddy</span>
                 </p>
@@ -251,7 +261,7 @@ const Plans = () => {
                   fontSize="small"
                   className="text-white"
                 />
-                <p className="font-normal text-[16px] leading-6">
+                <p className="font-normal md:text-[18px] text-[14px] md:leading-6 leading-5">
                   Daily <span className="font-bold">LIVE Trading</span> with
                   SEBI <span className="font-bold">Registered Experts</span>
                 </p>
@@ -261,7 +271,7 @@ const Plans = () => {
                   fontSize="small"
                   className="text-white"
                 />
-                <p className="font-normal text-[16px] leading-6">
+                <p className="font-normal md:text-[18px] text-[14px] md:leading-6 leading-5">
                   Complimentary Access to{" "}
                   <span className="font-bold">StockWiz Trading App</span>{" "}
                   (Launching July 2024)
@@ -272,7 +282,7 @@ const Plans = () => {
                   fontSize="small"
                   className="text-white"
                 />
-                <p className="font-normal text-[16px] leading-6">
+                <p className="font-normal md:text-[18px] text-[14px] md:leading-6 leading-5">
                   <span className="font-bold">Lifetime</span> Doubt Support
                 </p>
               </div>
