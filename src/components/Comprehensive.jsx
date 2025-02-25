@@ -31,7 +31,7 @@ const Comprehensive = () => {
       <div className="flex justify-center items-center w-full gap-4 md:px-60">
         <AnimateFromLeft>
           <img className="object-cover" src={one} alt="one" />
-        </AnimateFromLeft>
+        </AnimateFromLeft>  
         <AnimateFromLeft>
           <img className="object-cover" src={two} alt="two" />
         </AnimateFromLeft>
