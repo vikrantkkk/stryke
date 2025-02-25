@@ -5,7 +5,7 @@ import Footer from "../components/Footer.jsx";
 const MainLayout = ({ children }) => {
   return (
     <>
-      <div className="">
+      <div className="overflow-x-hidden">
         <Header />
         <main>{children}</main>
         <Footer />
