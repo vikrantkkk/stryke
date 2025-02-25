@@ -125,7 +125,7 @@ const Footer = () => {
             </p>
           </div>
         </AnimateFromBottom>
-        <div className="md:hidden flex w-full justify-center gap-6 items-center mb-4">
+        <div className="md:hidden flex w-full justify-start px-4 gap-6 items-center mb-4">
         <AnimateFromBottom>
           <div className="flex flex-col justify-start items-start gap-8">
             <p className="font-semibold text-[18px] leading-5 text-[#FFFFFF]">
