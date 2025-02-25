@@ -19,9 +19,9 @@ import {
 const Footer = () => {
   return (
     <footer className="bg-[#070A07]  flex justify-center items-center flex-col  w-full">
-      <div className="flex justify-between items-center  px-32 py-6 w-full relative  gap-2  before:absolute before:inset-0 before:rounded-full before:border-[1px] before:border-transparent before:[border-image-source:linear-gradient(270.82deg,rgba(255,255,255,0.1)_2.68%,#ffffff_33.24%,rgba(255,255,255,0.1)_99.29%)] before:[border-image-slice:1] before:pointer-events-none">
+      <div className="flex md:flex-row flex-col md:justify-between justify-center items-center  md:px-32  md:py-6 p-4 w-full relative  md:gap-2 gap-4  before:absolute before:inset-0 before:rounded-full before:border-[1px] before:border-transparent before:[border-image-source:linear-gradient(270.82deg,rgba(255,255,255,0.1)_2.68%,#ffffff_33.24%,rgba(255,255,255,0.1)_99.29%)] before:[border-image-slice:1] before:pointer-events-none">
         <AnimateFromBottom>
-          <div className="flex flex-col justify-start items-start gap-8">
+          <div className="flex flex-col justify-start items-start md:gap-8 gap-6">
             <div className="flex flex-col justify-start items-start gap-4">
               <img className="" src={logofooter} alt="logofooter" />
               <p className="font-light text-[14px] leading-6 text-[#FFFFFF]">
@@ -30,7 +30,7 @@ const Footer = () => {
                 research services.
               </p>
             </div>
-            <div className="flex justify-center items-center gap-4 bg-[#FFFFFF05] p-4 rounded-xl">
+            <div className="flex w-full justify-center items-center gap-4 bg-[#FFFFFF05] p-4 rounded-xl">
               <img className="" src={verified} alt="verified" />
               <div className="flex flex-col items-start justify-start">
                 <p className="font-light text-[14px] leading-4 text-[#FFFFFF]">
@@ -41,7 +41,7 @@ const Footer = () => {
                 </p>
               </div>
             </div>
-            <div className="flex flex-col justify-start items-start gap-4 bg-[#FFFFFF05] p-4 rounded-xl">
+            <div className="flex w-full flex-col justify-start items-start gap-4 bg-[#FFFFFF05] p-4 rounded-xl">
               <p className="font-medium text-[16px] leading-5 text-[#FFFFFF]">
                 Compliance Info
               </p>
@@ -69,6 +69,63 @@ const Footer = () => {
             </div>
           </div>
         </AnimateFromBottom>
+        <AnimateFromBottom>
+          <div className="md:flex hidden flex-col justify-start items-start gap-8">
+            <p className="font-semibold text-[18px] leading-5 text-[#FFFFFF]">
+              Quick Links
+            </p>
+            <p className="font-normal text-[16px] leading-4 text-[#FFFFFF]/[0.6]">
+              About Us
+            </p>
+            <p className="font-normal text-[16px] leading-4 text-[#FFFFFF]/[0.6]">
+              Membership
+            </p>
+            <p className="font-normal text-[16px] leading-4 text-[#FFFFFF]/[0.6]">
+              Features
+            </p>
+            <p className="font-normal text-[16px] leading-4 text-[#FFFFFF]/[0.6]">
+              FAQs
+            </p>
+            <p className="font-normal text-[16px] leading-4 text-[#FFFFFF]/[0.6]">
+              Blogs
+            </p>
+            <p className="font-normal text-[16px] leading-4 text-[#FFFFFF]/[0.6]">
+              Investor Charter
+            </p>
+            <p className="font-normal text-[16px] leading-4 text-[#FFFFFF]/[0.6]">
+              Complaints
+            </p>
+          </div>
+        </AnimateFromBottom>
+        <AnimateFromBottom>
+          <div className="md:flex hidden flex-col justify-start items-start gap-8">
+            <p className="font-semibold text-[18px] leading-5 text-[#FFFFFF]">
+              Company
+            </p>
+            <p className="font-normal text-[16px] leading-4 text-[#FFFFFF]/[0.6]">
+              Disclaimer
+            </p>
+            <p className="font-normal text-[16px] leading-4 text-[#FFFFFF]/[0.6]">
+              Grievance Policy
+            </p>
+            <p className="font-normal text-[16px] leading-4 text-[#FFFFFF]/[0.6]">
+              SEBI Scores
+            </p>
+            <p className="font-normal text-[16px] leading-4 text-[#FFFFFF]/[0.6]">
+              Terms & Conditions
+            </p>
+            <p className="font-normal text-[16px] leading-4 text-[#FFFFFF]/[0.6]">
+              Privacy Policy
+            </p>
+            <p className="font-normal text-[16px] leading-4 text-[#FFFFFF]/[0.6]">
+              Refund Policy
+            </p>
+            <p className="font-normal text-[16px] leading-4 text-[#FFFFFF]/[0.6]">
+              Careers
+            </p>
+          </div>
+        </AnimateFromBottom>
+        <div className="md:hidden flex w-full justify-center gap-6 items-center mb-4">
         <AnimateFromBottom>
           <div className="flex flex-col justify-start items-start gap-8">
             <p className="font-semibold text-[18px] leading-5 text-[#FFFFFF]">
@@ -125,6 +182,7 @@ const Footer = () => {
             </p>
           </div>
         </AnimateFromBottom>
+        </div>
         <AnimateFromBottom>
           <div className="flex flex-col justify-start items-start gap-4">
             <p className="font-semibold text-[18px] leading-5 text-[#FFFFFF]">
@@ -180,7 +238,7 @@ const Footer = () => {
           </div>
         </AnimateFromBottom>
       </div>
-      <div className="flex justify-between items-center px-32 py-4 w-full">
+      <div className="md:flex hidden justify-between items-center px-32 py-4 w-full">
         <AnimateFromLeft>
           <p className="font-normal text-[14px] leading-4 text-[#FFFFFF]">
             Copyright ©2023 Stockwiz. All rights reserved.

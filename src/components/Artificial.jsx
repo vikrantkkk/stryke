@@ -72,7 +72,7 @@ const Artificial = () => {
   ];
 
   return (
-    <div className="bg-[#070A07] flex justify-center items-center flex-col md:gap-16 gap-6 pt-14 pb-60 w-full overflow-hidden relative">
+    <div className="bg-[#070A07] flex justify-center items-center flex-col md:gap-16 gap-6 pt-14 md:pb-60 w-full overflow-hidden relative">
       <AnimateFromBottom>
         <h2 className="md:font-extrabold font-bold md:text-[50px] text-[28px] text-white text-center md:leading-[96px] leading-[38px]">
           Leverage The Power Of{" "}
@@ -176,49 +176,72 @@ const Artificial = () => {
       </AnimateFromBottom>
       {/* mobile view */}
       <AnimateFromBottom>
-        <div className="relative top-10 w-full flex justify-center items-center overflow-x-auto md:hidden space-x-4 px-4">
+        <div className="relative top-0 w-full flex justify-center items-center overflow-hidden md:hidden">
           {cards.map((card, index) => {
             const isPositive = card.change > 0;
             const arrowIcon = isPositive ? "greenArrow" : "redArrow";
             const textColor = isPositive ? "text-[#26BC0D]" : "text-[#FF0000]";
-            
+
             let cardTransform = "translate-y-0 rotate-0";
             if (index < Math.floor(cards.length / 2)) {
-              cardTransform = "translate-y-[5%] -translate-x-[45%] rotate-[-15deg]";
+              cardTransform =
+                "translate-y-[5%] -translate-x-[45%] rotate-[-15deg]";
             } else if (index > Math.floor(cards.length / 2)) {
-              cardTransform = "translate-y-[5%] translate-x-[45%] rotate-[15deg]";
+              cardTransform =
+                "translate-y-[5%] translate-x-[45%] rotate-[15deg]";
             }
 
             return (
               <div
                 key={index}
-                className={`relative bg-gradient-to-b flex flex-col gap-4 from-[#0E1712] to-[#040404] text-white p-3 w-64 rounded-xl transform transition-all duration-300 hover:scale-105 shadow-[ -15px_28px_54.3px_0px_#00000040] border-gradient ${cardTransform}`}
+                className={`relative bg-gradient-to-b flex flex-col  from-[#0E1712] to-[#040404] text-white p-3 w-72 rounded-xl transform transition-all duration-300 hover:scale-105 shadow-[ -15px_28px_54.3px_0px_#00000040] border-gradient ${cardTransform}`}
               >
                 <div className="flex justify-between items-start gap-2">
                   <div className="flex justify-center items-start gap-2">
-                    <img src={card.image} alt={card.image} className="w-8 h-8 object-cover rounded-full" />
+                    <img
+                      src={card.image}
+                      alt={card.image}
+                      className="w-8 h-8 object-cover rounded-full"
+                    />
                     <div>
-                      <p className="font-medium text-[14px] leading-4 text-[FFFFFF]">{card.companyShort}</p>
-                      <p className="font-normal text-[10px] leading-3 text-[FFFFFF]/[0.4]">{card.companyFull}</p>
-                      <p className="font-normal text-[12px] leading-4 text-[FFFFFF]/[0.7]">{card.date}</p>
+                      <p className="font-medium text-[14px] leading-4 text-[FFFFFF]">
+                        {card.companyShort}
+                      </p>
+                      <p className="font-normal text-[10px] leading-3 text-[FFFFFF]/[0.4]">
+                        {card.companyFull}
+                      </p>
+                      <p className="font-normal text-[12px] leading-4 text-[FFFFFF]/[0.7]">
+                        {card.date}
+                      </p>
                     </div>
                   </div>
                   <div className="flex justify-center items-start flex-col gap-2">
-                    <p className="font-medium text-[14px] leading-4 text-[FFFFFF]">₹{card.price.toFixed(2)}</p>
-                    <p className={`flex justify-center items-center font-medium text-[8px] leading-[10px] ${textColor}`}>
+                    <p className="font-medium text-[14px] leading-4 text-[FFFFFF]">
+                      ₹{card.price.toFixed(2)}
+                    </p>
+                    <p
+                      className={`flex justify-center items-center font-medium text-[8px] leading-[10px] ${textColor}`}
+                    >
                       <SvgIcon name={arrowIcon} size={20} />
-                      <span>₹{card.change.toFixed(2)} ({card.percentage.toFixed(2)}%)</span>
+                      <span>
+                        ₹{card.change.toFixed(2)} ({card.percentage.toFixed(2)}
+                        %)
+                      </span>
                     </p>
                   </div>
                 </div>
-                <p className="font-normal text-[12px] leading-4 text-white">{card.description}</p>
-                <button className="font-medium text-[10px] leading-4 text-white p-2 cursor-pointer rounded-full">Trade Now</button>
+                <p className="font-normal text-[12px] leading-4 text-white">
+                  {card.description}
+                </p>
+                <button className="font-medium text-[10px] leading-4 text-white p-2 cursor-pointer rounded-full">
+                  Trade Now
+                </button>
               </div>
             );
           })}
         </div>
       </AnimateFromBottom>
-      <div className="relative top-40">
+      <div className="relative md:top-40">
         <AnimateFromInside>
           <Button name="Get Started" />
         </AnimateFromInside>
@@ -227,14 +250,7 @@ const Artificial = () => {
         src={
           "https://www.tradingview-widget.com/embed-widget/ticker-tape/?locale=en#%7B%22symbols%22%3A%5B%7B%22description%22%3A%22%22%2C%22proName%22%3A%22BSE%3ARELIANCE%22%7D%2C%7B%22description%22%3A%22%22%2C%22proName%22%3A%22BSE%3AHDFCBANK%22%7D%2C%7B%22description%22%3A%22%22%2C%22proName%22%3A%22BSE%3ATATAMOTORS%22%7D%2C%7B%22description%22%3A%22%22%2C%22proName%22%3A%22BSE%3ABHARTIARTL%22%7D%2C%7B%22description%22%3A%22%22%2C%22proName%22%3A%22BSE%3AZOMATO%22%7D%2C%7B%22description%22%3A%22%22%2C%22proName%22%3A%22BSE%3AICICIBANK%22%7D%2C%7B%22description%22%3A%22%22%2C%22proName%22%3A%22BSE%3ADLF%22%7D%2C%7B%22description%22%3A%22%22%2C%22proName%22%3A%22BSE%3AINFY%22%7D%2C%7B%22description%22%3A%22%22%2C%22proName%22%3A%22BSE%3AJINDALSTEL%22%7D%5D%2C%22showSymbolLogo%22%3Atrue%2C%22isTransparent%22%3Atrue%2C%22displayMode%22%3A%22adaptive%22%2C%22colorTheme%22%3A%22dark%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A44%2C%22utm_source%22%3A%22www.stockwiz.in%22%2C%22utm_medium%22%3A%22widget%22%2C%22utm_campaign%22%3A%22ticker-tape%22%2C%22page-uri%22%3A%22www.stockwiz.in%2F%22%7D"
         }
-        style={{
-          width: "100%",
-          height: "50px",
-          border: "none",
-          overflow: "hidden",
-          position: "relative",
-          top: 200,
-        }}
+        className="relative w-full h-[50px] border-none overflow-hidden top-0 md:top-[200px]"
         scrolling="no"
         allowtransparency="true"
         frameBorder="0"

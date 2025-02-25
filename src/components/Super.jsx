@@ -14,9 +14,9 @@ const Super = () => {
   const continuousCards = [...cardData, ...cardData];
 
   return (
-    <div className="bg-[#070A07] flex flex-col gap-16 px-10 py-14 w-full relative z-10 overflow-hidden">
+    <div className="bg-[#070A07] flex flex-col md:gap-16 gap-6 py-14 w-full relative z-10 overflow-hidden">
       <AnimateFromBottom>
-        <h2 className="font-extrabold text-[80px] leading-[96px] text-white text-center">
+        <h2 className="md:font-extrabold font-bold md:text-[80px] text-[28px] md:leading-[96px] leading-[38px] text-white text-center">
           Hear it up From Super
         </h2>
       </AnimateFromBottom>

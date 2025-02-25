@@ -248,7 +248,7 @@ const Trade = () => {
                       className="flex items-center gap-2 font-medium text-[16px] leading-6 text-white"
                     >
                       <img
-                        className="w-6 h-6 object-contain" 
+                        className="w-10 h-10 object-contain" 
                         src={correct}
                         alt="Check"
                       />
@@ -273,7 +273,7 @@ const Trade = () => {
                         className="flex items-center gap-3 font-medium text-[20px] leading-7 text-white"
                       >
                         <img
-                          className="w-6 h-6 object-contain"
+                          className="w-16 h-16 object-contain"
                           src={correct}
                           alt="Check"
                         />
