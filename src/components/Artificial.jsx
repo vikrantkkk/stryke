@@ -1,11 +1,14 @@
 import React from "react";
 import { AnimateFromBottom, AnimateFromInside } from "../common/ScrollFadeIn";
 import bajaj from "../assets/png/bajaj.png";
+import copilot from "../assets/png/copilot.png";
+import gemini from "../assets/png/gemini.png";
 import bajaj1 from "../assets/png/bajaj1.png";
 import bajaj2 from "../assets/png/bajaj2.png";
 import paytm from "../assets/png/paytm.png";
 import artificialelipse from "../assets/png/artificialelipse.png";
 import magicpen from "../assets/svg/magicpen.svg";
+import chatgpt from "../assets/svg/chatgpt.svg";
 import { SvgIcon } from "../utils/SvgIcons";
 import Button from "../common/Button";
 
@@ -69,22 +72,27 @@ const Artificial = () => {
   ];
 
   return (
-    <div className="bg-[#070A07] flex justify-center items-center flex-col gap-16 px-10 pt-14 pb-60 w-full overflow-hidden relative">
+    <div className="bg-[#070A07] flex justify-center items-center flex-col md:gap-16 gap-6 pt-14 pb-60 w-full overflow-hidden relative">
       <AnimateFromBottom>
-        <h2 className="font-extrabold text-[50px] text-white text-center leading-[1.2]">
+        <h2 className="md:font-extrabold font-bold md:text-[50px] text-[28px] text-white text-center md:leading-[96px] leading-[38px]">
           Leverage The Power Of{" "}
           <span className="text-[#C0FF73]">Artificial Intelligence</span>
         </h2>
       </AnimateFromBottom>
       <AnimateFromInside>
-        <p className="text-[#FFFFFF99]/[0.6] font-normal text-[18px] leading-7 text-center">
-          Experience AI-powered insights and automation at its finest.
+        <p className="flex flex-col sm:flex-row justify-center items-center text-[#FFFFFF99]/[0.6] font-normal md:text-[18px] text-[16px] leading-7 text-center gap-x-2 sm:gap-x-3">
+          <span>Powered by</span>
+          <span className="flex items-center gap-x-2">
+            <img src={chatgpt} alt="chatgpt" /> Chat GPT
+            <img src={gemini} alt="gemini" /> Gemini &
+            <img src={copilot} alt="copilot" /> Copilot
+          </span>
         </p>
       </AnimateFromInside>
 
-      {/* Half Circle Card Layout */}
+      {/*  desktop Card Layout */}
       <AnimateFromBottom>
-        <div className="relative top-20 w-full flex justify-center items-end">
+        <div className="relative top-20 w-full md:flex justify-center items-end hidden">
           {cards.map((card, index) => {
             const positions = [
               "translate-y-[90%] -translate-x-[90%] rotate-[-45deg]",
@@ -161,6 +169,50 @@ const Artificial = () => {
                     Trade Now
                   </button>
                 </div>
+              </div>
+            );
+          })}
+        </div>
+      </AnimateFromBottom>
+      {/* mobile view */}
+      <AnimateFromBottom>
+        <div className="relative top-10 w-full flex justify-center items-center overflow-x-auto md:hidden space-x-4 px-4">
+          {cards.map((card, index) => {
+            const isPositive = card.change > 0;
+            const arrowIcon = isPositive ? "greenArrow" : "redArrow";
+            const textColor = isPositive ? "text-[#26BC0D]" : "text-[#FF0000]";
+            
+            let cardTransform = "translate-y-0 rotate-0";
+            if (index < Math.floor(cards.length / 2)) {
+              cardTransform = "translate-y-[5%] -translate-x-[45%] rotate-[-15deg]";
+            } else if (index > Math.floor(cards.length / 2)) {
+              cardTransform = "translate-y-[5%] translate-x-[45%] rotate-[15deg]";
+            }
+
+            return (
+              <div
+                key={index}
+                className={`relative bg-gradient-to-b flex flex-col gap-4 from-[#0E1712] to-[#040404] text-white p-3 w-64 rounded-xl transform transition-all duration-300 hover:scale-105 shadow-[ -15px_28px_54.3px_0px_#00000040] border-gradient ${cardTransform}`}
+              >
+                <div className="flex justify-between items-start gap-2">
+                  <div className="flex justify-center items-start gap-2">
+                    <img src={card.image} alt={card.image} className="w-8 h-8 object-cover rounded-full" />
+                    <div>
+                      <p className="font-medium text-[14px] leading-4 text-[FFFFFF]">{card.companyShort}</p>
+                      <p className="font-normal text-[10px] leading-3 text-[FFFFFF]/[0.4]">{card.companyFull}</p>
+                      <p className="font-normal text-[12px] leading-4 text-[FFFFFF]/[0.7]">{card.date}</p>
+                    </div>
+                  </div>
+                  <div className="flex justify-center items-start flex-col gap-2">
+                    <p className="font-medium text-[14px] leading-4 text-[FFFFFF]">₹{card.price.toFixed(2)}</p>
+                    <p className={`flex justify-center items-center font-medium text-[8px] leading-[10px] ${textColor}`}>
+                      <SvgIcon name={arrowIcon} size={20} />
+                      <span>₹{card.change.toFixed(2)} ({card.percentage.toFixed(2)}%)</span>
+                    </p>
+                  </div>
+                </div>
+                <p className="font-normal text-[12px] leading-4 text-white">{card.description}</p>
+                <button className="font-medium text-[10px] leading-4 text-white p-2 cursor-pointer rounded-full">Trade Now</button>
               </div>
             );
           })}

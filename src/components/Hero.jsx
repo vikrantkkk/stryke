@@ -49,7 +49,7 @@ const Hero = () => {
       </AnimateFromBottom>
 
       <AnimateFromBottom>
-        <p className="md:font-extrabold font-bold md:text-[50px] text-[28px] md:leading-[60px] leading-[33px] text-white text-center">
+        <p className="md:font-extrabold font-bold md:text-[50px] text-[28px] md:leading-[60px] leading-[33px] text-white text-center px-4">
           Unlock The Power Of <br /> Institutional Stock Trading.
         </p>
       </AnimateFromBottom>
@@ -59,14 +59,14 @@ const Hero = () => {
           Get ready to witness the biggest revolution in the history of retail
           trading. Trade like <br /> the professionals with a click of a button.
         </p>
-        <p className="text-[#FFFFFF99]/[0.6] font-normal md:text-[18px] text-[12px] md:leading-7 leading-5 text-center md:hidden block">
+        <p className="text-[#FFFFFF99]/[0.6] font-normal md:text-[18px] text-[12px] md:leading-7 leading-5 text-center md:hidden block px-4">
           Get ready to witness the biggest revolution in the history of retail
           trading. Trade like the professionals with a click of a button.
         </p>
       </AnimateFromInside>
 
       <AnimateFromInside>
-        <div className="rounded-2xl bg-[#141514] md:w-[1216px] w-[353px] md:h-[732px] h-[253px] relative">
+        <div className="rounded-2xl bg-[#141514] md:w-[1216px] w-[353px] md:h-[732px] h-[253px] relative px-4">
           <video
             className="absolute inset-0 w-full h-full object-cover rounded-2xl"
             src={video}
@@ -80,7 +80,7 @@ const Hero = () => {
       <AnimateFromInside>
         <Button name="Start Trading" className="md:h-auto h-[50px]" />
       </AnimateFromInside>
-      <div className="flex justify-between w-full md:hidden px-4">
+      <div className="flex justify-between w-full md:hidden px-4 md:py-0 py-2">
         <AnimateFromLeft>
           <button className="w-[166px] h-[50px] cursor-pointer flex justify-center items-center gap-1 border bg-white border-white rounded-full py-2 px-4">
             <img className="w-8 h-8  rounded-full" src={apple} alt="apple" />

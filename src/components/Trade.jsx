@@ -120,13 +120,13 @@ const Trade = () => {
     >
       <div
         ref={containerRef}
-        className="sticky top-20 left-0 w-full min-h-[calc(100vh-80px)] flex items-center py-8 md:py-0"
+        className="sticky top-20 left-0 w-full min-h-[calc(100vh-80px)] flex items-center py-8 md:px-0 px-4 md:py-0"
       >
         <div className="flex flex-col items-center w-full gap-8 md:gap-16">
           {/* Title */}
           <div key={`title-${currentSection}`} className="w-full">
             <AnimateFromBottom>
-              <h2 className="md:font-extrabold font-bold text-[28px] md:text-[80px] leading-8 md:leading-[96px] text-white text-center px-4 md:px-0">
+              <h2 className="md:font-extrabold font-bold text-[28px] md:text-[80px] leading-8 md:leading-[96px] text-white text-center  md:px-0">
                 {sections[currentSection].title}
               </h2>
             </AnimateFromBottom>
@@ -134,14 +134,14 @@ const Trade = () => {
 
           <div className="flex flex-col md:flex-row w-full md:px-60 justify-between items-center">
             {/* Mobile Layout */}
-            <div className="flex flex-col w-full gap-6 px-4 md:hidden">
+            <div className="flex flex-col w-full gap-6  md:hidden">
               <AnimateFromLeft>
                 <p className="font-normal text-[14px] leading-5 text-white/60 text-center">
                   {sections[currentSection].description}
                 </p>
               </AnimateFromLeft>
 
-              <div className="flex justify-center items-center gap-3">
+              <div className="flex justify-center items-center gap-3 ">
                 <div className="flex flex-col gap-3 w-[30%]">
                   <AnimateFromTop>
                     <img
@@ -161,7 +161,7 @@ const Trade = () => {
                 <div className="flex-1">
                   <AnimateFromRight>
                     <img
-                      className="object-cover rounded-lg"
+                      className="object-cover  rounded-lg"
                       src={trade3}
                       alt="Trade Example 3"
                     />
