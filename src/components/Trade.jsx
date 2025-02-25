@@ -82,6 +82,8 @@ const Trade = () => {
   const wrapperRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
   const headerHeight = 20;
+  const [lastScrollTop, setLastScrollTop] = useState(0);
+  const [scrollDirection, setScrollDirection] = useState('down');
 
   // Update isMobile state when window size changes
   useEffect(() => {
@@ -96,7 +98,7 @@ const Trade = () => {
 
   // Calculate total height based on whether it's mobile or desktop
   const totalHeight = isMobile 
-    ? Math.max(100, sections.length * 60) // Reduced height for mobile
+    ? Math.max(100, sections.length * 120) // Even more space for mobile sections
     : (sections.length + 1) * 100; // Original height for desktop
 
   useEffect(() => {
@@ -106,34 +108,65 @@ const Trade = () => {
       const wrapperRect = wrapperRef.current.getBoundingClientRect();
       const wrapperHeight = wrapperRef.current.offsetHeight;
       const windowHeight = window.innerHeight;
+      const currentScrollTop = window.scrollY || document.documentElement.scrollTop;
+      
+      // Determine scroll direction
+      if (currentScrollTop > lastScrollTop) {
+        setScrollDirection('down');
+      } else {
+        setScrollDirection('up');
+      }
+      setLastScrollTop(currentScrollTop);
       
       // If we're scrolled to the component
       if (wrapperRect.top <= headerHeight && wrapperRect.bottom > 0) {
-        // Calculate mobile scroll sensitivity - more sensitive than desktop
-        const sectionScrollLength = isMobile 
-          ? windowHeight * 0.4 // Much smaller scroll amount for each section on mobile
-          : windowHeight;
-        
         // Calculate how far we've scrolled into the component
         const scrollProgress = -(wrapperRect.top - headerHeight);
-        const scrollPercentage = Math.min(1, Math.max(0, scrollProgress / (wrapperHeight - windowHeight)));
+        const totalScrollableHeight = wrapperHeight - windowHeight;
+        const scrollPercentage = Math.min(1, Math.max(0, scrollProgress / totalScrollableHeight));
         
-        // For mobile: Map the scroll percentage directly to section index
-        // This makes it smoother and ensures we reach all sections
+        // Different behavior for mobile and desktop
         let newSection;
+        
         if (isMobile) {
-          // Direct mapping based on scroll percentage
-          newSection = Math.min(
-            sections.length - 1,
-            Math.floor(scrollPercentage * sections.length)
-          );
+          // For mobile: much higher thresholds, require almost complete scroll before changing
+          // When scrolling down, we want to hold longer before changing section
+          if (scrollDirection === 'down') {
+            // These thresholds are much higher - meaning you need to scroll much more to change section
+            const thresholds = [0.20, 0.48, 0.75, 0.95]; // Very high thresholds - will show almost all content
+            
+            for (let i = 0; i < sections.length; i++) {
+              if (scrollPercentage < thresholds[i] || i === sections.length - 1) {
+                newSection = i;
+                break;
+              }
+            }
+          } else {
+            // When scrolling up, we can change a bit earlier
+            const thresholds = [0.10, 0.38, 0.65, 0.85]; 
+            let found = false;
+            
+            for (let i = sections.length - 1; i >= 0; i--) {
+              if (scrollPercentage <= thresholds[i]) {
+                newSection = i;
+                found = true;
+              }
+            }
+            
+            if (!found) {
+              newSection = 0;
+            }
+          }
         } else {
           // Original desktop calculation
-          const sectionIndex = Math.floor(scrollProgress / sectionScrollLength);
-          newSection = Math.min(Math.max(0, sectionIndex), sections.length - 1);
+          const sectionScrollLength = windowHeight;
+          newSection = Math.min(
+            Math.max(0, Math.floor(scrollProgress / sectionScrollLength)),
+            sections.length - 1
+          );
         }
         
-        if (newSection !== currentSection) {
+        if (newSection !== undefined && newSection !== currentSection) {
           setCurrentSection(newSection);
         }
       }
@@ -149,7 +182,7 @@ const Trade = () => {
       window.removeEventListener("scroll", handleScroll);
       clearTimeout(timeout);
     };
-  }, [currentSection, isMobile]);
+  }, [currentSection, isMobile, lastScrollTop]);
 
   return (
     <div
@@ -159,23 +192,11 @@ const Trade = () => {
     >
       <div
         ref={containerRef}
-        className="sticky top-20 left-0 w-full min-h-[calc(100vh-80px)] flex items-center py-8 md:px-0 px-4 md:py-0"
+        className="sticky top-0 left-0 w-full min-h-screen flex items-center p-8"
       >
         <div className="flex flex-col items-center w-full gap-8 md:gap-16">
-          {/* Indicators for Mobile - Shows which section we're on */}
-          {isMobile && (
-            <div className="w-full flex justify-center gap-2 mt-2">
-              {sections.map((_, index) => (
-                <div 
-                  key={`indicator-${index}`} 
-                  className={`h-2 rounded-full ${currentSection === index ? 'w-6 bg-green-500' : 'w-2 bg-gray-500'}`}
-                />
-              ))}
-            </div>
-          )}
-          
           {/* Title */}
-          <div key={`title-${currentSection}`} className="w-full">
+          <div key={`title-${currentSection}`} className="w-full mt-8 md:mt-0">
             <AnimateFromBottom key={`anim-title-${currentSection}`}>
               <h2 className="md:font-extrabold font-bold text-[28px] md:text-[80px] leading-8 md:leading-[96px] text-white text-center md:px-0">
                 {sections[currentSection].title}
@@ -184,7 +205,7 @@ const Trade = () => {
           </div>
 
           <div className="flex flex-col md:flex-row w-full md:px-60 justify-between items-center">
-            {/* Mobile Layout */}
+            {/* Mobile Layout  */}
             <div className="flex flex-col w-full gap-6 md:hidden">
               <AnimateFromLeft key={`anim-desc-${currentSection}`}>
                 <p className="font-normal text-[14px] leading-5 text-white/60 text-center">
