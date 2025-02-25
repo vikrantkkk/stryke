@@ -28,7 +28,7 @@ const Comprehensive = () => {
           supercharge your trading and investing journey.
         </p>
       </AnimateFromInside>
-      <div className="flex justify-center items-center w-full gap-4 md:px-60">
+      <div className="flex justify-center items-center w-full md:gap-4 md:px-60">
         <AnimateFromLeft>
           <img className="object-cover" src={one} alt="one" />
         </AnimateFromLeft>  
