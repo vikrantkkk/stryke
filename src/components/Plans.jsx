@@ -36,7 +36,7 @@ const Plans = () => {
       <AnimateFromInside>
         <div className="relative flex justify-between md:my-0 my-6 items-center border border-[#FFFFFF4D]/[0.3] p-1 rounded-l-md">
           <button
-            className={`font-medium nd:text-[20px] text-[12px] md:leading-6 leading-4 text-white md:px-4 px-10 py-2 rounded-md cursor-pointer transition-all duration-300 ${
+            className={`font-medium md:text-[20px] text-[12px] md:leading-6 leading-4 text-white md:px-4 px-10 py-2 rounded-md cursor-pointer transition-all duration-300 ${
               isMonthly ? "bg-[#131513] shadow-md" : "bg-transparent"
             }`}
             onClick={() => setIsMonthly(true)}
